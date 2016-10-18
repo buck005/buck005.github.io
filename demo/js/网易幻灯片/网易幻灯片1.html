@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>网易幻灯片</title>
+
+        <style>
+			*{margin: 0; padding: 0; list-style: none;}
+			#box{width: 450px;height: 450px; margin:100px auto; position: relative; border: 1px solid #000;overflow: hidden;}
+			#list{position: absolute; left: 0; top: 0; width: 452px;height: 452px;}
+			#list li{float: left;}
+			#list li img{width: 450px; }
+			ol{width: 400px; height: 20px; position: absolute; left: 20px; bottom: 10px; }
+			ol:after{content:""; display: block; clear: both;}
+			ol li{width: 50px; height: 10px; background: #ccc; float: left; margin-left: 7px; margin-top: 5px; cursor: pointer;position: relative;}
+			
+			ol li.active{background: #7bbedf;}
+			ol li span{width: 0; height: 10px; background: #206f96; position: absolute; left: 0; top: 0;}
+
+			#btn1{width: 41px; height: 69px; background: url(img/btn.png) no-repeat -83px 0; position: absolute; left: 0; top:
+				50%; margin-top: -35px;}
+			#btn1:hover{background: url(img/btn.png) no-repeat 0 0; }
+			#btn2{width: 41px; height: 69px; background: url(img/btn.png) no-repeat -125px 0; position: absolute; right: 0; top:
+				50%; margin-top: -35px;  z-index: 10;}
+			#btn2:hover{background: url(img/btn.png) no-repeat -42px 0; }
+        </style>
+		
+		<script src="move4.js"></script>
+        <script>
+        window.onload=function(){
+        	var oBox=document.getElementById('box')
+        	var oUl=document.getElementById('list');
+        	var aLi=oUl.getElementsByTagName('li');
+        	//var aLi=oUl.chlidren;
+        	var oOl=oBox.children[1];
+        	var aSpan=oOl.getElementsByTagName('span')
+        	var aLis=oOl.children;
+        	//alert(aLis.length)
+        	var oBtn1=document.getElementById('btn1');
+        	var oBtn2=document.getElementById('btn2');
+        	var iNow=0;
+        	//var timer=null;
+
+        	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//计算出oUl的总宽度
+
+        	function tab(iNow){//公共样式 
+        		for(var i=0; i<aLis.length; i++){
+	        			aLis[i].className='';
+	        		}
+	        		aLis[iNow].className='active';
+	        		move(oUl,{left:-iNow*aLi[0].offsetWidth});//改变oUl的left值	
+        	};
+        	for(var i=0;i<aLis.length;i++){
+        		aLis[i].index=i;
+	        	aLis[i].onclick=function(){
+	        		tab(iNow);
+	        		iNow=this.index;
+	        		clearInterval(aSpan[iNow].timer);//清掉aSpan在运动框架中的定时器
+        			aSpan[iNow].style.width=0;//把aSpan的width变为0
+	        	};
+        	}
+
+        	oBtn2.onclick=function(){
+        		var W=aLi[0].offsetWidth;
+        		clearInterval(aSpan[iNow].timer);
+        		aSpan[iNow].style.width=0;
+        		//iNow%=aLi.length-1;//相当于于判断 if(iNow==aLi.length-1){iNow=0}
+        		if(iNow==aLi.length-1)iNow=-1;
+        		move(oUl,{left:-W*(1+iNow)});
+        		iNow++;
+        		tab(iNow);
+        		
+        		//console.log(iNow)
+        		//console.log(W*(1+iNow))
+        	};
+
+        	oBtn1.onclick=function(){
+        		var W=aLi[0].offsetWidth;
+        		clearInterval(aSpan[iNow].timer);
+        		aSpan[iNow].style.width=0;
+        		if(iNow<=0){
+        			iNow=aLi.length;
+        		}
+        		
+        		move(oUl,{left:W*(1+iNow)});
+        		iNow--;
+        		tab(iNow);
+        		
+        		//console.log(iNow)
+        		//console.log(W*(iNow))
+        	};
+
+        	oBox.onmouseover=function(){
+        		clearInterval(aSpan[iNow].timer);//清掉aSpan在运动框架中的定时器
+        		aSpan[iNow].style.width=0;//把aSpan的width变为0
+        	};
+        	oBox.onmouseout=function(){
+        		next();
+        	};
+        	// timer=setInterval(function(){
+        		// clearInterval(timer);
+				function next(){
+        			for(var i=0;i<aSpan.length;i++){
+        				aSpan[i].style.width=0;
+        				tab(iNow);
+        			}
+        			move(aSpan[iNow],{width:50},{fn:function(){
+					iNow++;
+			
+					if(iNow==aLis.length)iNow=0;
+					var W=aLi[0].offsetWidth;
+					move(oUl,{left:-iNow*W},{fn:next});	
+					},duration:2000,easing:'linear'})	
+
+        		};
+        		next();			
+			// },1000)
+        };
+        </script>
+    </head>
+    <body>
+    <div id="box">
+    	<ul id="list">
+    		<li>
+				<img src="img/m1.jpg" alt="1" title="1" />
+    		</li>
+    		<li>
+				<img src="img/m2.jpg" alt="1" title="2" />
+    		</li>
+    		<li>
+				<img src="img/m3.jpg" alt="1" title="3" />
+    		</li>
+    		<li>
+				<img src="img/m4.jpg" alt="1" title="4" />
+    		</li>
+    		<li>
+				<img src="img/m5.jpg" alt="1" title="5" />
+    		</li>
+    		<li>
+				<img src="img/m6.jpg" alt="1" title="6" />
+    		</li>
+    		<li>
+				<img src="img/m7.jpg" alt="1" title="7" />
+    		</li>
+    	</ul>
+    	<ol>
+    		<li class="active"> 1 <span></span></li>
+    		<li> 2 <span></span></li>
+    		<li> 3 <span></span></li>
+    		<li> 4 <span></span></li>
+    		<li> 5 <span></span></li>
+    		<li> 6 <span></span></li>
+    		<li> 7 <span></span></li>
+    	</ol>
+    	<a href="javascript:;" id="btn1"></a>
+    	<a href="javascript:;" id="btn2"></a>
+    </div>
+    </body>
+</html>

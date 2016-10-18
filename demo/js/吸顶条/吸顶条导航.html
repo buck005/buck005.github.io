@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	*{margin:0;padding:0;}
+	#box1,#box2{width:100%;height:50px;background:#f60;line-height:50px;color:#fff;font-size:30px;text-align:center;}
+	#box2{background:#000;display:none;}
+	p{margin:5px 0;}
+</style>
+<script>
+	window.onload=function(){
+		var oBox1=document.getElementById('box1');
+		var oBox2=document.getElementById('box2');
+		var top=oBox1.offsetTop;
+
+		window.onscroll=function(){
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+			if(scrollTop>top){//如果滚动距离大于物体本身居上的距离，后面的就钻上来，执行一下代码
+				oBox1.style.position='fixed';
+				oBox1.style.left='0';
+				oBox1.style.top='0';
+				oBox2.style.display='block';
+			}else{
+				oBox1.style.position='';
+				oBox2.style.display='none';
+			}
+		};
+	};
+</script>
+</head>
+<body>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<div id="box1">吸顶条导航</div>
+<div id="box2"></div>
+<p>1111111111111</p>
+<p>2222222222222</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+<p>www.baidu.com</p>
+</body>
+</html>

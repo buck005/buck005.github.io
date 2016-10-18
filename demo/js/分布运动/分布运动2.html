@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分块运动</title>
+
+	<style>
+		*{margin: 0; padding: 0; list-style: none;}
+		input{width: 60px;margin: 50px auto;display: block;}
+		ul{width: 366px; height: 366px;margin: 150px auto;padding: 10px;}
+		ul li{float: left; margin: 10px; width: 100px; height: 100px;}
+		ul li img{width: 100%; border:1px solid #000;}
+	</style>
+	
+	<script src="move4.js"></script>
+	<script>
+	//思路：
+	//1.先布局转换
+	//2.在用定时器、move框架
+	
+	function addEvent(obj,sEv,fn){//事件绑定函数
+		if(obj.addEventListener){
+			obj.addEventListener(sEv,fn,false);
+		}else{
+			obj.attachEvent('on'+sEv,fn);
+		}
+	};
+	window.onload=function(){
+		var oBtn=document.getElementById('btn');
+		var oList=document.getElementById('list');
+		var aLi=oList.children;
+		var timer=null;
+		var bOk=false;
+
+		//布局转换  先把left和top值储存在aPos里面
+		var aPos={};
+
+		for(var i=0;i<aLi.length;i++){
+		
+			aPos[i]={
+				top:aLi[i].offsetTop,
+				left:aLi[i].offsetLeft
+			}
+		}
+		//浮动转定位
+		for(var i=0;i<aLi.length;i++){
+
+			aLi[i].style.position='absolute';
+			aLi[i].style.left=aPos[i].left+'px';
+			aLi[i].style.top=aPos[i].top+'px';
+			aLi[i].style.margin=0;
+		}
+		var n=0;
+		oBtn.onclick=function(){
+			clearInterval(timer)
+			if(bOk){
+				
+				timer=setInterval(function(){
+					//显示
+					n--;
+					if(n<0){
+						n=0;
+						clearInterval(timer);
+					}
+					move(aLi[n],{left:aPos[n].left,top:aPos[n].top,width:100,height:100,opacity:1},{fn:function(){
+						if(n==0){
+							oBtn.value=" hide";
+							bOk=!bOk;
+						}
+					}});
+					
+					
+				},100);
+				
+			}else{			
+				timer=setInterval(function(){
+					//console.log(1)
+					(function(index){
+						//隐藏
+						move(aLi[n],{left:0,top:0,width:0,height:0,opacity:0},{fn:function(){
+							if(n==aLi.length-1){
+								oBtn.value="显示";
+								bOk=true;
+							}
+						}});
+					})(n);
+					n++
+					if(n==aLi.length){
+						clearInterval(timer);
+					}
+				},100);
+
+				
+			}
+		}
+
+		// addEvent(oBtn,'click',function(){
+		// 	var n=0;
+		// 	if(this.getAttribute('data-index')){//判断是否获取到自定义属性
+
+		// 		if(index==aLi.length-1){
+		// 			n=aLi.length-1;
+
+		// 			timer=setInterval(function(){
+		// 				//显示
+		// 				move(aLi[n],{left:aPos[n].left,top:aPos[n].top,width:100,height:100,opacity:1});
+		// 				n--;
+		// 				if(n<0){
+		// 					clearInterval(timer);
+		// 				}
+		// 			},100);
+		// 		}
+		// 		this.removeAttribute('data-index');//删除自定义属性
+		// 	}else{
+		// 		//var n=0;
+			
+		// 		timer=setInterval(function(){
+		// 			//console.log(1)
+		// 			(function(index){
+		// 				//隐藏
+		// 				move(aLi[n],{left:0,top:0,width:0,height:0,opacity:0});
+		// 			})(n);
+		// 			n++
+		// 			if(n==aLi.length){
+		// 				clearInterval(timer);
+		// 			}
+		// 		},100);
+
+		// 		this.setAttribute("data-index",'1')//设置自定义属性
+		// 	}
+			
+		// })
+	};
+	</script>
+</head>
+<body>
+
+	<input type="button" value="隐藏显示" id="btn" />
+	<ul id="list">
+		<li>
+			<img src="img/m1.jpg" alt="1">
+		</li>
+		<li>
+			<img src="img/m2.jpg" alt="2">
+		</li>
+		<li>
+			<img src="img/m3.jpg" alt="3">
+		</li>
+		<li>
+			<img src="img/m4.jpg" alt="4">
+		</li>
+		<li>
+			<img src="img/m5.jpg" alt="5">
+		</li>
+		<li>
+			<img src="img/m6.jpg" alt="6">
+		</li>
+		<li>
+			<img src="img/m7.jpg" alt="7">
+		</li>
+		<li>
+			<img src="img/m8.jpg" alt="8">
+		</li>
+		<li>
+			<img src="img/m9.jpg" alt="9">
+		</li>
+		
+	</ul>
+</body>
+</html>

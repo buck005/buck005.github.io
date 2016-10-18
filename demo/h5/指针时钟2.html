@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指针时钟</title>
+    <style>
+        .clock {
+            width: 300px;
+            height: 300px;
+            /*margin: 100px auto;*/
+            -webkit-border-radius: 50%;
+            border: 5px solid #000;
+            position: absolute;
+            left:50%;
+            top:50%;
+            -webkit-transform:translate(-50%,-50%);
+            cursor: move;
+        }
+
+        .hours {
+            width: 8px;
+            height: 70px;
+            background: #000;
+            position: absolute;
+            left: 146px;
+            top: 80px;
+            -webkit-border-radius: 10px 10px 0 0/50px 50px 0 0;
+        }
+
+        .minute {
+            width: 6px;
+            height: 100px;
+            background: #ccc;
+            position: absolute;
+            left: 147px;
+            top: 50px;
+            -webkit-border-radius: 10px 10px 0 0/50px 50px 0 0;
+        }
+
+        .second {
+            width: 4px;
+            height: 130px;
+            background: red;
+            position: absolute;
+            left: 148px;
+            top: 20px;
+            -webkit-border-radius: 10px 10px 0 0/50px 50px 0 0;
+        }
+
+        .clock > div {
+            /*
+                transform-origin
+                改变变形中心(旋转)
+                    top left bottom right center;
+            */
+            transform-origin: bottom center;
+        }
+
+        .cap {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            background: -webkit-radial-gradient(red, blue);
+            -webkit-border-radius: 50%;
+        }
+
+        span {
+            width: 4px;
+            height: 10px;
+            background-color: #000;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -2px;
+            -webkit-transform-origin: center 150px;
+        }
+
+        .scale_big {
+            width: 6px;
+            height: 15px;
+            margin-left: -3px;
+        }
+
+        span strong {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            font: 20px/20px '微软雅黑';
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            margin-left: -10px;
+
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oClock = document.querySelector('.clock');
+            var oHours = document.querySelector('.hours');
+            var oMinute = document.querySelector('.minute');
+            var oSecond = document.querySelector('.second');
+
+            oClock.onmousedown=function(ev){
+                var disX= ev.clientX-oClock.offsetLeft;
+                var disY=ev.clientY-oClock.offsetTop;
+                document.onmousemove=function(ev){
+                    var l=ev.clientX-disX;
+                    var t=ev.clientY-disY;
+
+                    oClock.style.left=l+'px';
+                    oClock.style.top=t+'px';
+                };
+                document.onmouseup=function(){
+                    document.onmousemove=document.onmouseup=null;
+                    return false;
+                };
+            };
+            clock();
+            function clock(){
+                var num = 60;
+                for (var i = 0; i < num; i++) {
+                    //动态创建60个刻度尺，分别设置样式
+                    var oSpan = document.createElement('span');
+                    oSpan.style.WebkitTransform = `rotate(${i * 6}deg)`;
+                    //oSpan.style.WebkitTransform = 'rotate(' + i * 6 + 'deg)';
+                    if (i % 5 == 0) {
+                        oSpan.classList.add('scale_big');
+                        oSpan.innerHTML = `<strong>${i / 5 || 12}<strong/>`;
+
+                        var oStrong = oSpan.children[0];
+                        oStrong.style.WebkitTransform = `rotate(${-i * 6}deg)`;//rotate默认顺时针旋转
+                        //oStrong.style.WebkitTransform = 'rotate(' + i * 6 + 'deg)';
+                        oSpan.appendChild(oStrong);
+                    }
+                    oClock.appendChild(oSpan);
+                }
+
+                setInterval(time, 10);
+                time();
+                function time() {
+                    var d = new Date();
+                    var hours = d.getHours();
+                    var minutes = d.getMinutes();
+                    var seconds = d.getSeconds();
+                    var millseconds = d.getMilliseconds();
+
+                    oHours.style.WebkitTransform = `rotate(${(hours + minutes / 60) / 12 * 360}deg)`;
+                    oMinute.style.WebkitTransform = `rotate(${(minutes + seconds / 60) / 60 * 360}deg)`;
+                    oSecond.style.WebkitTransform = `rotate(${(seconds + millseconds / 1000) / 60 * 360}deg)`;
+                };
+
+            };
+
+        };
+    </script>
+</head>
+<body>
+<div class="clock">
+    <div class="hours"></div>
+    <div class="minute"></div>
+    <div class="second"></div>
+    <div class="cap"></div>
+</div>
+</body>
+</html>

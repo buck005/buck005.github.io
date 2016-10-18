@@ -1,0 +1,836 @@
+/*reset start*/
+html, body {
+    overflow: hidden;
+    height: 100%;
+}
+
+body, h1, h2, h3, h4, h5, p, ul, ol {
+    padding: 0;
+    margin: 0;
+    font: 14px '微软雅黑';
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active {
+    color: #009ee0;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+/*reset end*/
+
+/*common start*/
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.clear {
+    zoom: 1;
+}
+
+.commonTitle {
+    color: #009ee0;
+    font-size: 80px;
+    line-height: .8;
+    font-weight: bold;
+    letter-spacing: -2px;
+    margin-top: 50px;
+    /*text-shadow: 6px 6px 12px rgba(255, 255, 255, .8);*/
+}
+
+.commonText {
+    color: #fff;
+    text-indent: 2em;
+    font: 16px/24px '微软雅黑';
+}
+
+/*common end*/
+
+/*frame start*/
+#main {
+    width: 100%;
+    height: 100%;
+}
+
+#header {
+    width: 100%;
+    height: 80px;
+    background: #fff;
+}
+
+#headerMain {
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+#logo {
+    margin-top: 30px;
+}
+
+#nav {
+    font-size: 14px;
+    margin-top: 50px;
+}
+
+#nav li {
+    float: left;
+    position: relative;
+    margin-left: 40px;
+}
+
+#nav li .up {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #000;
+    width: 0%;
+    overflow: hidden;
+    transition: .5s width linear;
+}
+
+#nav li:hover .up {
+    width: 100%;
+}
+
+#arrow {
+    width: 21px;
+    height: 11px;
+    background: url(../img/menuIndicator.png) no-repeat;
+    position: absolute;
+    left: 50%;
+    bottom: -11px;
+    transition: .5s left;
+    z-index: 2;
+}
+
+#content {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#aside {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    z-index: 10;
+}
+
+#aside li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .5);
+    margin: 10px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 0 2px 2px #ccc;
+}
+
+#aside li.active {
+    background: #fff;
+    cursor: default;
+}
+
+#list {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 1s top;
+}
+
+#list .liList {
+    width: 2000px;
+    position: relative;
+    left: 50%;
+    margin-left: -1000px;
+    overflow: hidden;
+}
+
+#list .divList {
+    width: 1100px;
+    height: 520px;
+    margin: 0 auto;
+    /*background: red;*/
+}
+
+/*frame end*/
+
+/*home start*/
+#home {
+    background: url("../img/bg1.jpg") no-repeat;
+}
+
+#homeContent {
+    position: relative;
+}
+
+#homeContent .homeContent1 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    -webkit-perspective: 800px;
+    -webkit-transform-style: preserve-3d;
+}
+
+#homeContent .homeContent1 li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+    visibility: hidden;
+}
+
+#homeContent .homeContent1 li.active {
+    z-index: 1;
+    visibility: visible;
+}
+
+#homeContent .homeContent1 li .op {
+    width: 100%;
+    height: 100px;
+    background: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    opacity: .8;
+    filter: alpha(opacity:80);
+}
+
+#homeContent .homeContent1 li h3 {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 100px;
+    font: 50px/100px '微软雅黑';
+    z-index: 3;
+}
+
+#homeContent .homeContent1 li a {
+
+}
+
+#homeContent .homeContent1 li a img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1100px;
+    height: 520px;
+}
+
+#homeContent .homeContent2 {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+    z-index: 3;
+}
+
+#homeContent .homeContent2 li {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .5);
+    display: inline-block;
+    margin: 2px;
+    box-shadow: 0 0 4px rgba(25, 25, 25, .8);
+    cursor: pointer;
+}
+
+#homeContent .homeContent2 li.active {
+    background: #fff;
+    cursor: default;
+}
+
+/*图片切换*/
+#homeContent .homeContent1 .leftShow {
+    animation: 1s ease homeLeftShow;
+    -webkit-animation: 1s ease homeLeftShow;
+    visibility: visible;
+    z-index: 3;
+}
+
+#homeContent .homeContent1 .rightHide {
+    animation: 1s ease homeRightHide;
+    -webkit-animation: 1s ease homeRightHide;
+    visibility: hidden;
+}
+
+#homeContent .homeContent1 .leftHide {
+    animation: 1s ease homeLeftHide;
+    -webkit-animation: 1s ease homeLeftHide;
+    visibility: hidden;
+}
+
+#homeContent .homeContent1 .rightShow {
+    animation: 1s ease homeRightShow;
+    -webkit-animation: 1s ease homeRightShow;
+    visibility: visible;
+    z-index: 3;
+}
+
+@keyframes homeLeftHide {
+    0% {
+        trnasform: translateZ(0);
+        visibility: visible;
+    }
+    40% {
+        transform: translate(-40%, 0) scale(0.8) rotateY(20deg);
+    }
+    100% {
+        transform: translateZ(-200px);
+    }
+}
+
+@keyframes homeRightShow {
+    0% {
+        trnasform: translateZ(-200px);
+    }
+    40% {
+        transform: translate(40%, 0) scale(0.8) rotateY(-20deg);
+    }
+    100% {
+        transform: translateZ(0);
+    }
+}
+
+@keyframes homeLeftShow {
+    0% {
+        trnasform: translateZ(-200px);
+    }
+    40% {
+        transform: translate(-40%, 0) scale(0.8) rotateY(20deg);
+    }
+    100% {
+        transform: translateZ(0);
+    }
+}
+
+@keyframes homeRightHide {
+    0% {
+        trnasform: translateZ(0);
+        visibility: visible;
+    }
+    40% {
+        transform: translate(40%, 0) scale(0.8) rotateY(-20deg);
+    }
+    100% {
+        transform: translateZ(-200px);
+    }
+}
+
+/*home end*/
+
+/*course start*/
+#course {
+    background: url("../img/bg3.jpg") no-repeat;
+}
+
+#course .courseContent1 {
+
+}
+
+#course .courseContent2 {
+    width: 400px;
+    margin-top: 50px;
+
+}
+
+#course .courseContent3 {
+    width: 480px;
+    position: absolute;
+    right: 480px;
+    top: 70px;
+    text-align: center;
+    font: 20px/40px '微软雅黑';
+    color: #fff;
+}
+
+#course .courseContent3 .prev {
+    width: 230px;
+    height: 40px;
+    background: #888;
+    position: absolute;
+    top: 0;
+    left: -20px;
+    z-index: 10;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 5px #fff, 0 0 5px 5px #ccc;
+    transition: .5s;
+    opacity: .5;
+    cursor: pointer;
+}
+
+#course .courseContent3 .next {
+    width: 230px;
+    height: 40px;
+    background: #888;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    z-index: 10;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 5px #fff, 0 0 5px 5px #ccc;
+    transition: .5s;
+    opacity: .5;
+    cursor: pointer;
+}
+
+#course .courseContent3 .prev:hover {
+    opacity: 1;
+}
+
+#course .courseContent3 .next:hover {
+    opacity: 1;
+}
+
+#course .courseContent3 .menu_box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 40px;
+}
+
+#course .courseContent3 .menu {
+
+    width: 480px;
+    height: 450px;
+    float: left;
+}
+
+#course .courseContent3 .menu_box ul li {
+    /*display: none;*/
+    transition: 1s all ease;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+#course .courseContent3 .menu_box ul li.active {
+    /*display: block;*/
+    opacity: 1;
+    z-index: 1;
+}
+
+#course .courseContent3 .courseLogo {
+    transform-style: preserve-3d;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 120px;
+    height: 120px;
+    float: left;
+    transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
+    margin-top: 25px;
+    margin-right: 40px;
+    transition: 1s;
+}
+
+#course .courseContent3 .courseLogo > div {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    background: #000;
+    opacity: 0.6;
+    box-shadow: inset 10px 10px 10px #fff, 0 0 10px 10px rgba(0, 222, 255, .5);
+    font: 20px/120px '微软雅黑';
+    color: #fff;
+    text-shadow: 0 0 4px #000;
+    cursor: pointer;
+
+}
+
+#course .courseContent3 .courseLogo:hover {
+    -webkit-transform: rotateY(170deg) rotateX(10deg);
+}
+
+#course .courseContent3 .courseLogo > div:nth-child(1) {
+    -webkit-transform: translateZ(60px);
+    opacity: 1;
+}
+
+#course .courseContent3 .courseLogo > div:nth-child(2) {
+    -webkit-transform: translateZ(-60px) rotateY(180deg);
+    opacity: 1;
+}
+
+#course .courseContent3 .courseLogo > div:nth-child(3) {
+    -webkit-transform: translateY(-60px) rotateX(90deg);
+}
+
+#course .courseContent3 .courseLogo > div:nth-child(4) {
+    -webkit-transform: translateY(60px) rotateX(-90deg);
+}
+
+#course .courseContent3 .courseLogo > div:nth-child(5) {
+    -webkit-transform: translateX(-60px) rotateY(-90deg);
+}
+
+#course .courseContent3 .courseLogo > div:nth-child(6) {
+    -webkit-transform: translateX(60px) rotateY(90deg);
+}
+
+#course .courseContent3 .courseLogo .courseBefore img {
+    width: 100%;
+    height: 100%;
+}
+
+#course .courseContent3 .courseLogo .courseAfter {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+}
+
+#course .courseContent3 .courseLogo .courseAfter a {
+    color: #fff;
+    color: #009ee0;
+    font-size: 26px;
+    line-height: 120px;
+    font-weight: bold;
+    letter-spacing: -2px;
+}
+
+/*course end*/
+
+/*works start*/
+#works {
+    background: url("../img/bg4.jpg") no-repeat;
+}
+
+#worksContent {
+    position: relative;
+    overflow: hidden;
+}
+
+#worksContent .worksContent1 {
+    padding: 0px 0 100px 50px;
+}
+
+#worksContent .worksContent2 {
+    width: 1000px;
+    height: 133px;
+    margin-top: 100px;
+    position: absolute;
+    left: 50px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, .6);
+    transition: .5s;
+}
+
+#worksContent2 {
+    position: absolute;
+}
+
+#worksContent .prev {
+    width: 39px;
+    height: 133px;
+    background: #ccc;
+    text-align: center;
+    font: bold 40px/133px '微软雅黑';
+    color: #888;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 314px;
+    transition: .8s;
+    z-index: 2;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, .6);
+    border-radius: 3px 0 0 3px;
+    opacity: .3;
+    filter: alpha(opacity:30);
+}
+
+#worksContent .prev:hover {
+    color: #000;
+    opacity: 1;
+    filter: alpha(opacity:100);
+}
+
+#worksContent .next {
+    width: 39px;
+    height: 133px;
+    background: #ccc;
+    text-align: center;
+    font: bold 40px/133px '微软雅黑';
+    color: #888;
+    cursor: pointer;
+    position: absolute;
+    left: 1052px;
+    top: 314px;
+    transition: .8s;
+    z-index: 2;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, .6);
+    border-radius: 0 3px 3px 0;
+    opacity: .3;
+    filter: alpha(opacity:30);
+}
+
+#worksContent .next:hover {
+    color: #000;
+    opacity: 1;
+    filter: alpha(opacity:100);
+
+}
+
+#worksContent .worksImgParent {
+    float: left;
+    width: 200px;
+    height: 133px;
+    overflow: hidden;
+    margin: 0 1px;
+    position: relative;
+}
+
+#worksContent .worksImg {
+    transition: .5s;
+    width: 200px;
+    height: 133px;
+}
+
+#worksContent .worksImgMark {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(25, 25, 25, .8);
+    color: #fff;
+    padding: 15px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: .5s;
+}
+
+#worksContent .worksImgMark div {
+    width: 32px;
+    height: 34px;
+    background: url("../img/zoomico.png") no-repeat;
+    margin: 10px auto;
+    cursor: pointer;
+    transition: .5s;
+}
+
+#worksContent .worksImgMark span {
+    font-size: 18px;
+}
+
+#worksContent .worksImgMark div a {
+    width: 32px;
+    height: 34px;
+    position: absolute;
+}
+
+#worksContent .worksImgMark div:hover {
+    background-position: 0 -36px;
+}
+
+#worksContent .worksImgParent:hover .worksImg {
+    transform: scale(1.5) rotate(-20deg);
+}
+
+#worksContent .worksImgParent:hover .worksImgMark {
+    opacity: .7;
+}
+
+#worksContent .worksContent3 {
+    width: 167px;
+    height: 191px;
+    background: url("../img/robot.png") no-repeat;
+    position: absolute;
+    left: 920px;
+    top: 140px;
+    -webkit-animation: 10s worksMove linear infinite;
+}
+
+@keyframes worksMove {
+    0% {
+
+    }
+    49% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        left: 0;
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+@-webkit-keyframes worksMove {
+    0% {
+
+    }
+    49% {
+        -webkit-transform: rotateY(0deg);
+    }
+    50% {
+        left: 65px;
+        -webkit-transform: rotateY(180deg);
+    }
+    100% {
+        -webkit-transform: rotateY(180deg);
+    }
+}
+
+/*works end*/
+
+/*about start*/
+#about {
+    background: url("../img/bg5.jpg") no-repeat;
+}
+
+#about #aboutContent .aboutContent1 {
+    width: 450px;
+}
+
+#about #aboutContent .aboutContent2 {
+    margin-top: 50px;
+    width: 450px;
+}
+
+#about #aboutContent .aboutContent2 .commonText {
+    text-indent: 0;
+    line-height: 30px;
+}
+
+#about #aboutContent .aboutContent3 {
+
+}
+
+#about #aboutContent .aboutContent3 .aboutImg {
+    position: absolute;
+    width: 260px;
+    height: 200px;
+    border: 5px solid rgba(255, 255, 255, .5);
+    border-radius: 8px;
+    z-index: 3;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#about #aboutContent .aboutContent3 .aboutImg:nth-of-type(1) {
+    left: 1250px;
+    top: 50px;
+}
+
+#about #aboutContent .aboutContent3 .aboutImg:nth-of-type(2) {
+    left: 1100px;
+    top: 300px;
+}
+
+#about #aboutContent .aboutContent3 .aboutImg ul {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+}
+
+#about #aboutContent .aboutContent3 .aboutImg ul li {
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+
+#about #aboutContent .aboutContent3 .aboutImg ul img {
+    position: absolute;
+    transition: .5s;
+}
+
+#about #aboutContent .aboutContent3 .aboutImg span {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: scale(1.5); /*默认第一次鼠标移进入时有放大效果*/
+    -webkit-transform: scale(1.5);
+    transition: .5s;
+}
+
+#about .blueLine {
+    width: 357px;
+    height: 998px;
+    background: url("../img/greenLine.png") no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 0;
+}
+
+/*about end*/
+
+/*team start*/
+#author {
+    background: url("../img/bg2.jpg") no-repeat;
+    position: relative;
+}
+
+#authorContent1 {
+    padding-left:100px;
+}
+
+#authorContent1 .commonText {
+    text-indent: 0;
+}
+
+#author .authorContent2 a {
+    position: absolute;
+    bottom: -25px;
+    left: 550px;
+}
+
+/*team end*/
+

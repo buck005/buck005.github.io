@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background: black;
+			text-align: center;
+		}
+
+		canvas{
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300"></canvas>
+	<script src="common.js"></script>
+	<script>
+		var canvas=document.getElementById('canvas');
+		var ctx=canvas.getContext('2d');
+
+		var data=[
+			rnd(10,255),
+			rnd(10,255),
+			rnd(10,255),
+			rnd(10,255),
+			rnd(10,255),
+			rnd(10,255)
+		];
+		var lastDegree=0;
+		var dataSum=sum(data);
+
+		data.forEach(function(number,index){//data每一项所占的百分比（percentage）
+			data[index]=number/dataSum;
+		});
+
+		data.forEach(function(percentage){
+			ctx.beginPath();//开始路径  开启一条新的路径
+			ctx.fillStyle=`rgb(${rnd(0,255)},${rnd(0,255)},${rnd(0,255)})`;
+			ctx.moveTo(350, 150);//起始点
+			//gd.arc(cx,cy,r,起始弧度，结束弧度，是否逆时针); 
+			ctx.arc(350, 150, 130, d2a(lastDegree), d2a(lastDegree+percentage*360), false);	//结束位置=上一次的值+下一次的值（lastDegree+percentage*360）
+			ctx.closePath();//自动闭合路径   不加上会出现缺角的效果 加在上色之前
+			ctx.fill();//填充
+			lastDegree=lastDegree+percentage*360;//存一下每次的结束值
+		});
+		function sum(ary){//求和函数
+			var sum=0;
+			ary.forEach(function(number){
+				sum+=number;
+			});
+			return sum;
+		};
+	</script>
+</body>
+</html>
+

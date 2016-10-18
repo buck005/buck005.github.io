@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			background: #000;
+			text-align: center;
+		}
+		canvas{
+			background: #fff;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="400"></canvas>
+	<script src="common.js"></script>
+	<script>
+	var canvas=document.getElementById('canvas');
+	var ctx=canvas.getContext("2d");
+	var data=[
+		rnd(20,255),
+		rnd(20,255),
+		rnd(20,255),
+		rnd(20,255),
+		rnd(20,255),
+		rnd(20,255),
+		rnd(20,255),
+		rnd(20,255)
+	]
+
+	var max=Math.max.apply(null,data)
+	// console.log(max);
+	data.forEach(function(number,index){//number代表数组中的每一项
+		// console.log(number)
+		ctx.fillStyle='rgb('+rnd(0,255)+','+rnd(0,255)+','+rnd(0,255)+')'
+		ctx.fillRect(canvas.width/data.length*index,
+		 	canvas.height-number/max*canvas.height,
+		 	30,
+		  	number/max*canvas.height
+		  )
+	});
+	</script>
+</body>
+</html>
+

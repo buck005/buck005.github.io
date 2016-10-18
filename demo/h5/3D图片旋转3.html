@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+
+        }
+
+        #box {
+            perspective: 800px;
+            transform-style: preserve-3d;
+
+        }
+
+        .container {
+            width: 133px;
+            height: 200px;
+            position: relative;
+            margin: 150px auto;
+            /*background: #ccc;*/
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg);
+
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+            box-shadow: 0 0 15px 2px #fff;
+            transform-style: preserve-3d;
+            -webkit-box-reflect: below 50px linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
+
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="container"></div>
+</div>
+<script>
+    var oBox = document.querySelector('#box');
+    var oContainer = document.querySelectorAll('.container')[0];
+
+    var count = 10;
+
+    // 控制旋转变形
+    var transformX = 0;
+    var transformY = 0;
+
+    // 记录速度
+    var speedX = 0;
+    var speedY = 0;
+
+    // 记录鼠标原坐标以便计算speed
+    var oldX = 0;
+    var oldY = 0;
+
+    var timer = null;
+    var bOk = false;
+    var zIndex = 0;
+
+    for (var index = 0; index < count; index++) {
+        var oSlide = document.createElement('div');
+        oSlide.classList.add('slide');
+
+        oSlide.style.transition = `0.7s ${(count - index) * 0.1}s`;
+        oSlide.style.backgroundImage = `url(statics/img/${index + 1}.jpg)`;
+
+        (function (oSlide, index) {
+
+            setTimeout(function () {
+                oSlide.style.transform = `rotateY(${index * 360 / count}deg)  translateZ(300px)`;//先移动后旋转
+            });
+
+        })(oSlide, index);
+
+        oContainer.appendChild(oSlide);
+    }
+    document.onmousedown = function (ev) {
+        if (!bOk) return;//最后一张图片动画完成之后才可以拖拽
+        // 防止定时器多开
+        clearTransition();
+        clearInterval(timer);
+
+        var oldTransformX = transformX;
+        var oldTransformY = transformY;
+
+        var oldClientX = ev.clientX;
+        var oldClientY = ev.clientY;
+
+        document.onmousemove = function (ev) {
+
+            var distanceX = ev.clientX - oldClientX;
+            var distanceY = ev.clientY - oldClientY;
+
+            transformX = oldTransformX + distanceX;
+            transformY = oldTransformY + distanceY;
+
+            setPosition();
+
+            // 存储速度值
+            speedX = ev.clientX - oldX;
+            speedY = ev.clientY - oldY;
+
+            // 更改老X值
+            oldX = ev.clientX;
+            oldY = ev.clientY;
+        }
+
+        document.onmouseup = function (ev) {
+
+            document.onmousemove = null;
+            document.onmouseup = null;
+
+            console.log(speedX, speedY);
+            clearInterval(timer);
+            timer = setInterval(function () {
+                speedX *= 0.8;
+                speedY *= 0.8;
+
+                transformX += speedX;
+                transformY += speedY;
+
+                setPosition();
+            }, 16)
+        }
+        return false;
+    }
+
+    var aSlides = document.querySelectorAll('.slide');
+
+    function tranEnd() {
+        aSlides[0].removeEventListener('transitionend', tranEnd, false);
+        bOk = true;//最后一张图片动画完成之后才可以拖拽
+        for (var i = 0; i < aSlides.length; i++) {// 在最后一个动画播放完成之后更改透明度时去掉delay
+            aSlides[i].style.transition = '0.7s';
+
+        }
+        setPosition();
+    }
+    ;
+    aSlides[0].addEventListener('transitionend', tranEnd, false);
+
+    // 清空过渡属性
+    function clearTransition() {
+        for (var i = 0; i < aSlides.length; i++) {
+            aSlides[i].style.transition = '';
+        }
+    }
+
+    // 设置位置(通过transformX与transformY控制)
+    function setPosition() {
+        for (var i = 0; i < aSlides.length; i++) {
+            aSlides[i].style.transform = `rotateY(${i * 360 / count + transformX}deg)  translateZ(300px)`;
+
+            aSlides[i].style.opacity = `${Math.abs(Math.abs((i * 360 / count + transformX) % 360) - 180) / 180 + 0.2}`
+        }
+
+        // 更改父元素变换
+        oContainer.style.transform = `rotateX(${-transformY / 3 - 30}deg)`
+    }
+</script>
+</body>
+</html>
