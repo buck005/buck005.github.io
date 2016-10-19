@@ -42,7 +42,7 @@ window.onload = function () {
     aboutContent();
     window.onresize = fnResize;
 
-     toMove(4);
+
 
     //导航
     function bindNav() {
@@ -175,7 +175,7 @@ window.onload = function () {
 
 
     //标题公共样式
-    var timer1 = setInterval(textShadowColor, 1000);
+    // var timer1 = setInterval(textShadowColor, 1000);
 
     function textShadowColor() {
         for (var i = 0; i < oH1.length; i++) {
@@ -191,12 +191,12 @@ window.onload = function () {
         var oldIndex = 0;
         var iNowHome = 0;
         var data = [
-            {href: '../个人站/demo/html/《灵魂回响》官方网站/index.html', src: 'img/demo_img/111111.png', text: '灵魂回响'},
-            {href: '../个人站/demo/html/爱奇艺/index.html', src: 'img/demo_img/222222.png', text: '爱奇艺'},
-            {href: '../个人站/demo/html/京东/index.html', src: 'img/demo_img/333333.png', text: '京东'},
-            {href: '../个人站/demo/html/273二手车网/index.html', src: 'img/demo_img/444444.png', text: '273二手车网'},
-            {href: '../个人站/demo/html/美丽说-首页/index.html', src: 'img/demo_img/555555.png', text: '美丽说-首页'},
-            {href: '../个人站/demo/html/小米官网-新版/index.html', src: 'img/demo_img/666666.png', text: '小米官网-新版'}
+            {href: 'demo/html/《灵魂回响》官方网站/index.html', src: 'img/demo_img/111111.png', text: '灵魂回响'},
+            {href: 'demo/html/爱奇艺/index.html', src: 'img/demo_img/222222.png', text: '爱奇艺'},
+            {href: 'demo/html/京东/index.html', src: 'img/demo_img/333333.png', text: '京东'},
+            {href: 'demo/html/273二手车网/index.html', src: 'img/demo_img/444444.png', text: '273二手车网'},
+            {href: 'demo/html/美丽说-首页/index.html', src: 'img/demo_img/555555.png', text: '美丽说-首页'},
+            {href: 'demo/html/小米官网-新版/index.html', src: 'img/demo_img/666666.png', text: '小米官网-新版'}
         ];
         create();
         function create() {
