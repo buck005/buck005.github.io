@@ -245,8 +245,9 @@ window.onload = function () {
             if (ev.preventDefault) {
                 ev.preventDefault();
             } else {
+                return false;
             }
-            return false;
+           
         };
     };
 
@@ -317,6 +318,7 @@ window.onload = function () {
             clearInterval(timer);
         };
         oHomeContent.onmouseout = function () {
+            clearInterval(timer);
             timer = setInterval(change, 4000);
         }
         clearInterval(timer);

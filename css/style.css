@@ -446,7 +446,7 @@ a:active {
     position: absolute;
     top: 0;
     left: -20px;
-    z-index: 10;
+    z-index: 2;
     border-radius: 3px;
     box-shadow: inset 0px 0px 5px #fff, 0 0 5px 5px #ccc;
     transition: .5s;
@@ -461,7 +461,7 @@ a:active {
     position: absolute;
     top: 0;
     right: 25px;
-    z-index: 10;
+    z-index: 2;
     border-radius: 3px;
     box-shadow: inset 0px 0px 5px #fff, 0 0 5px 5px #ccc;
     transition: .5s;
@@ -514,7 +514,8 @@ a:active {
     width: 120px;
     height: 120px;
     float: left;
-    transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
+    -webkit-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
+    -moz-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
     margin-top: 25px;
     margin-right: 40px;
     transition: 1s;
@@ -539,32 +540,39 @@ a:active {
 
 #course .courseContent3 .courseLogo:hover {
     -webkit-transform: rotateY(170deg) rotateX(10deg);
+    -moz-transform: rotateY(170deg) rotateX(10deg);
 }
 
 #course .courseContent3 .courseLogo > div:nth-child(1) {
     -webkit-transform: translateZ(60px);
+    -moz-transform: translateZ(60px);
     opacity: 1;
 }
 
 #course .courseContent3 .courseLogo > div:nth-child(2) {
     -webkit-transform: translateZ(-60px) rotateY(180deg);
+    -moz-transform: translateZ(-60px) rotateY(180deg);
     opacity: 1;
 }
 
 #course .courseContent3 .courseLogo > div:nth-child(3) {
     -webkit-transform: translateY(-60px) rotateX(90deg);
+    -moz-transform: translateY(-60px) rotateX(90deg);
 }
 
 #course .courseContent3 .courseLogo > div:nth-child(4) {
     -webkit-transform: translateY(60px) rotateX(-90deg);
+    -moz-transform: translateY(60px) rotateX(-90deg);
 }
 
 #course .courseContent3 .courseLogo > div:nth-child(5) {
     -webkit-transform: translateX(-60px) rotateY(-90deg);
+    -moz-transform: translateX(-60px) rotateY(-90deg);
 }
 
 #course .courseContent3 .courseLogo > div:nth-child(6) {
     -webkit-transform: translateX(60px) rotateY(90deg);
+    -moz-transform: translateX(60px) rotateY(90deg);
 }
 
 #course .courseContent3 .courseLogo .courseBefore img {
@@ -770,6 +778,7 @@ a:active {
     left: 920px;
     top: 140px;
     -webkit-animation: 15s worksMove linear infinite;
+    -moz-animation: 15s worksMove linear infinite;
     z-index: 1;
 }
 
