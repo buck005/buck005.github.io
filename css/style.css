@@ -240,7 +240,8 @@ a:active {
 
 /*home start*/
 #home {
-    background: url("../img/bg1.jpg") no-repeat;
+    /* background: url("../img/bg1.jpg") no-repeat; */
+    background: #003f65;
 }
 
 #homeContent {
@@ -413,7 +414,8 @@ a:active {
 
 /*course start*/
 #course {
-    background: url("../img/bg3.jpg") no-repeat;
+    /* background: url("../img/bg3.jpg") no-repeat; */
+    background: #003f65;
 }
 
 #course .courseContent1 .commonTitle {
@@ -629,7 +631,8 @@ a:active {
 
 /*works start*/
 #works {
-    background: url("../img/bg4.jpg") no-repeat;
+    /* background: url("../img/bg4.jpg") no-repeat; */
+    background: #003f65;
 }
 
 #worksContent {
@@ -848,7 +851,8 @@ a:active {
 
 /*about start*/
 #about {
-    background: url("../img/bg5.jpg") no-repeat;
+    /* background: url("../img/bg5.jpg") no-repeat; */
+    background: #003f65;
 }
 
 #about #aboutContent .aboutContent1 {
@@ -935,7 +939,8 @@ a:active {
 
 /*team start*/
 #author {
-    background: url("../img/bg2.jpg") no-repeat;
+    /* background: url("../img/bg2.jpg") no-repeat; */
+    background: #003f65;
     position: relative;
 }
 
