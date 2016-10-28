@@ -60,7 +60,7 @@ window.onload = function () {
         var oSpan = oLoading.getElementsByTagName('span')[0];
         var aDiv = oLoading.getElementsByTagName('div');
         //图片预加载
-        var arr = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 'about1.jpg', 'about2.jpg', 'about3.jpg', 'about4.jpg', 'team.png', 'greenLine.png'];
+        var arr = ['about1.jpg', 'about2.jpg', 'about3.jpg', 'about4.jpg', 'team.png', 'greenLine.png'];
         var imageiNow = 0;
 
         for (var i = 0; i < arr.length; i++) {
