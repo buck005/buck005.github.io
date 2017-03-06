@@ -253,7 +253,7 @@ window.onload = function () {
 
 
     //标题公共样式
-    // var timer1 = setInterval(textShadowColor, 1000);
+    var timer1 = setInterval(textShadowColor, 1000);
 
     function textShadowColor() {
         for (var i = 0; i < oH1.length; i++) {
