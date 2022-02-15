@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	ul li{list-style:none;float:left;width:305px;height:310px;border:1px solid #ccc;margin:5px;}
+	ul li img{width:100%;height:100%;}
+</style>
+<script>
+	function getPos(obj){
+		var l=0;
+		var t=0;
+		while(obj){
+			l+=obj.offsetLeft;
+			t+=obj.offsetTop;
+
+			obj=obj.offsetParent;
+		}
+		return {left:l,top:t};
+	};
+	window.onload=window.onresize=window.onscroll=function(){
+		var oU=document.getElementById('ul');
+		var aImg=oU.getElementsByTagName('img');
+
+		var scrollT=document.documentElement.scrollTop||document.body.scrollTop;//获取滚动距离
+		var clientH=document.documentElement.clientHeight;//获取可视化窗口的高度
+
+		for(var i=0;i<aImg.length;i++){
+			var imgT=getPos(aImg[i]).top;//获取图片的一个绝对位置
+			console.log(imgT);
+			if(imgT<=(scrollT+clientH)){////判断图片已经漏出可视区范围！
+				aImg[i].src=aImg[i].getAttribute('_src');
+			}
+		}
+	};
+</script>
+</head>
+<body>
+<ul id="ul">
+	<li><img _src="img/m1.jpg" alt="" /></li>
+	<li><img _src="img/m2.jpg" alt="" /></li>
+	<li><img _src="img/m3.jpg" alt="" /></li>
+	<li><img _src="img/m4.jpg" alt="" /></li>
+	<li><img _src="img/m5.jpg" alt="" /></li>
+	<li><img _src="img/m6.jpg" alt="" /></li>
+	<li><img _src="img/m7.jpg" alt="" /></li>
+	<li><img _src="img/m8.jpg" alt="" /></li>
+	<li><img _src="img/m9.jpg" alt="" /></li>
+	<li><img _src="img/m10.jpg" alt="" /></li>
+	<li><img _src="img/m11.png" alt="" /></li>
+	<li><img _src="img/m12.png" alt="" /></li>
+	<li><img _src="img/m13.png" alt="" /></li>
+	<li><img _src="img/m14.png" alt="" /></li>
+	<li><img _src="img/m15.png" alt="" /></li>
+	<li><img _src="img/m16.png" alt="" /></li>
+	<li><img _src="img/m17.png" alt="" /></li>
+	<li><img _src="img/m18.png" alt="" /></li>
+	<li><img _src="img/m19.png" alt="" /></li>
+	<li><img _src="img/m20.png" alt="" /></li>
+
+</ul>
+</body>
+</html>

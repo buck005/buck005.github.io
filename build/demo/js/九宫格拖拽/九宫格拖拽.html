@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九宫格拖拽</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 300px;
+            background: #3498db;
+            position: absolute;
+            left: 400px;
+            top: 200px;
+        }
+        #l{
+            width: 20px;
+            height: 100%;
+            background: #e74c3c;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #r{
+            width: 20px;
+            height: 100%;
+            background: #e74c3c;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        #t{
+            width: 100%;
+            height: 20px;
+            background: #e74c3c;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #b{
+            width: 100%;
+            height: 20px;
+            background:  #e74c3c;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        #lt{
+            width: 20px;
+            height: 20px;
+            background: #34495e;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #rt{
+            width: 20px;
+            height: 20px;
+            background: #34495e;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        #lb{
+            width: 20px;
+            height: 20px;
+            background: #34495e;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        #rb{
+            width: 20px;
+            height: 20px;
+            background: #34495e;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+    <script>
+	function drag(obj,obj2){
+		obj.onmousedown=function(ev){
+			var oEvent=ev||event;
+			if(obj.className.indexOf('r')!=-1){
+				var downX=oEvent.clientX;
+				var oldW=obj2.offsetWidth;
+			}
+			if(obj.className.indexOf('b')!=-1){
+				var downY=oEvent.clientY;
+				var oldH=obj2.offsetHeight;
+			}
+			if(obj.className.indexOf('l')!=-1){
+				var downX=oEvent.clientX;
+				var oldW=obj2.offsetWidth;
+				var oldL=obj2.offsetLeft;
+			}
+			if(obj.className.indexOf('t')!=-1){
+				var downY=oEvent.clientY;
+				var oldH=obj2.offsetHeight;
+				var oldT=obj2.offsetTop;
+			}
+			
+			
+			document.onmousemove=function(ev){
+				var	oEvent=ev||event;
+				if(obj.className.indexOf('r')!=-1){
+						
+					var newW=oEvent.clientX-downX+oldW;
+					obj2.style.width=newW+'px';
+				}
+				if(obj.className.indexOf('b')!=-1){
+					var newH=oEvent.clientY-downY+oldH;
+					
+					obj2.style.height=newH+'px';
+				}
+				if(obj.className.indexOf('l')!=-1){
+					var newW=downX-oEvent.clientX+oldW;
+					var newL=oldL-(downX-oEvent.clientX);
+					
+					obj2.style.width=newW+'px';
+					obj2.style.left=newL+'px';
+				}
+				if(obj.className.indexOf('t')!=-1){
+					var newH=downY-oEvent.clientY+oldH;
+					var newT=oldT-(downY-oEvent.clientY);
+					
+					obj2.style.height=newH+'px';
+					obj2.style.top=newT+'px';
+				}
+			};
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			};
+			return false;
+		};	
+		
+	}
+	
+	
+     window.onload = function () {
+        var oBox=document.getElementById('box');
+		var aDiv=oBox.children;
+		
+		for(var i=0;i<aDiv.length;i++){
+			drag(aDiv[i],oBox);	
+		}
+         
+     };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div id="l" class="l"></div>
+        <div id="r" class="r"></div>
+        <div id="t" class="t"></div>
+        <div id="b" class="b"></div>
+        <div id="lt" class="lt"></div>
+        <div id="rt" class="rt"></div>
+        <div id="lb" class="lb"></div>
+        <div id="rb" class="rb"></div>
+    </div>
+</body>
+</html>

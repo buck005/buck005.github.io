@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度登录框拖拽</title>
+	<link rel="stylesheet" href="common.css"/>
+	<style>
+		#wrap{position:relative;_height:800px;}
+		.nav{width:100%;height:30px;margin-top:10px;}
+		.nav a{float:right;font:14px/30px '微软雅黑';margin:0 10px;text-decoration:underline;}
+		.nav a:hover{color:blue;}
+		#div1{
+			display: none;
+		}
+		.div2{
+			position: absolute; right:90px;top:26px;
+			width:0;
+			height:0;
+			border-left: 8px solid transparent;
+			border-bottom: 4px solid #ccc;
+			border-right: 8px solid transparent;
+		}
+		.div3{
+			position: absolute; right:90px;top:27px;
+			z-index: 2;
+			width:0;
+			height:0;
+			border-left: 8px solid transparent;
+			border-bottom: 4px solid #fff;
+			border-right: 8px solid transparent;
+		}
+		
+		#list{width:60px;position: absolute; right:65px;top:30px;border: 1px solid #d1d1d1;}
+		
+		#list li{height:25px;font:12px/25px '微软雅黑';text-align:center;cursor:pointer;}
+		#list li.active{background:#3388ff;}
+		
+		/* #list li:hover{background:#3388ff;} */
+
+		.logo{width:270px;margin:0 auto;}
+		.logo img{width:270px;}
+		.search{width:642px;margin-left:370px;margin-top:25px;position:relative;}
+		.search input{width:532px;height:34px;border:1px solid #ccc;padding-left:8px;font-size:16px;}
+		.search a{width:100px;height:36px;background:#3385ff;font:16px/36px '微软雅黑';text-align:center;color:#fff;}
+		.search a:hover{background:#317ef3;}
+		.search .icon{width:18px;height:16px;background:url(img/camera_new_679c15cc.png) no-repeat;position:absolute;right:110px;top:10px}
+		.search .icon:hover{background:url(img/camera_new_679c15cc.png) no-repeat 0 -20px;}
+
+		#search_ul1{width:540px;border:1px solid #ccc;border-top:none;margin-top:-1px;position: absolute;left:0;top:36px;z-index: 1;display:none;}
+		#search_ul1 li.active{font:16px/20px '微软雅黑';}
+		#search_ul1 li:hover{background:#ccc;}
+
+		.copy_right{width:653px;margin:0 auto;margin-top:230px;}
+		.login{background:#fff;width:390px;height:450px;position:absolute;left: 50%;top:50%;margin-left:-195px;margin-top:-225px;z-index:10;display:none;}
+		.login .login_form{width:350px;margin:0 auto;}
+		.login .title{position:relative;cursor:move;}
+		.login .title .icon1{width:15px;height:15px;background:url(img/pass_login_icons_e059c37.png) no-repeat -72px -49px;position:absolute;right:20px;top:15px;cursor:pointer;}
+		.login .sj_login{height:40px;margin-top:15px;}
+		.login .sj_login a{float:right;font:12px/40px '微软雅黑';padding-left:15px;background:url(img/icon.png) no-repeat 0 50%;}
+		.login .ipt1,.login .ipt2{width:310px;height:40px;border:1px solid #ccc;padding-left:36px;}
+		.login .ipt1{background:url(img/icon1.png) no-repeat 10px 50%;margin-bottom:15px;}
+		.login .ipt2{background:url(img/icon2.png) no-repeat 10px 50%;}
+		.login .a_radio{height:38px;margin-top:7px;font:12px/38px '微软雅黑';}
+		.login .a_radio .a1{float:right;color:#1b66c7;}
+		.login .ipt3{width:350px;height:48px;background:#448ff6;border-radius:5px;font-size:16px;color:#fff;cursor:pointer;}
+		.login .zhuce{height:12px;margin:15px 0 38px;}
+		.login .zhuce a{float:right;font-size:12px;color:#1b66c7;}
+		.foot_box{height:88px;border-top:1px solid #eee;}
+		.foot_box .footer{width:350px;height:46px;margin:0 auto;text-align:left;font:12px/50px '微软雅黑';}
+		.foot_box .icon_box{width:370px;height:42px;margin-left: 20px;}
+		.foot_box .icon_box .icon2{width:19px;height:16px;background:url(img/pass_login_icons_e059c37.png) no-repeat -36px -64px;cursor: pointer;}
+		.foot_box .icon_box .icon3{width:19px;height:16px;background:url(img/pass_login_icons_e059c37.png) no-repeat 0 -64px;margin-left:16px;cursor: pointer;}
+		.foot_box .icon_box .icon4{width:43px;height:43px;background:url(img/pass_login_icons_e059c37.png) no-repeat -47px -86px;margin-left:16px;cursor:pointer;}
+
+		.boy{width:1366px;height:100%;background:#000;opacity:0.1;position:absolute;left:0;top:0;display:none;}
+		#pic{position:absolute;left:0;top:50px;display:none;}
+		#pic .icon5{width:43px;height:43px;background:url(img/camera_new_679c15cc.png) no-repeat 0 -86px;position:absolute;right:0;bottom:-3px;_background:red;}
+	</style>
+		
+	<script>
+	function getPos(obj){
+		var l=0;
+		var t=0;
+		while(obj){
+			l+=obj.offsetLeft;
+			t+=obj.offsetTop;
+			
+			obj=obj.offsetParent;	
+		}	
+		
+		return {left:l,top:t}
+	}//封装查找定位父级
+
+	//jsonp获取数据
+	function show(json){
+		//alert(json.s)
+		var oUl=document.getElementById('search_ul1');
+		var oT=document.getElementById('t1');
+		var arr=json.s;
+		oUl.innerHTML='';//清空
+
+		for(var i=0;i<arr.length;i++){
+			var oLi=document.createElement('li');
+			oLi.innerHTML=arr[i];
+			oLi.className='active';
+			oUl.appendChild(oLi);
+
+			oLi.onclick=function(){
+				oT.value=this.innerHTML;
+				oUl.innerHTML='';//清空
+			}	
+		}
+	}
+
+	window.onload=function(){
+		//打开页面默认选中焦点
+		var oT=document.getElementById('t1');
+		var oSearch=document.getElementById('search');
+		var oUl=document.getElementById('search_ul1');
+		
+		oT.onfocus=function(){//获取焦点
+			oT.style.border='1px solid #317ef3'
+			if(this.value=='请输入内容'){
+				this.value='';
+				this.style.color='#000';
+			}else{
+				oUl.style.display='block'
+			}
+		};
+
+		oT.onblur=function(){//失去焦点
+			oT.style.border='1px solid #ccc';
+			if(this.value==''){
+				this.value='请输入内容';
+				this.style.color='#ccc';
+			}
+		};
+
+		oT.focus();//给指点元素设置焦点
+
+		//读数据
+		oT.onkeyup=function(){
+			var oSc=document.createElement('script');
+			oSc.src='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+oT.value+'&cb=show';
+			document.getElementsByTagName('head')[0].appendChild(oSc);		
+		}
+
+
+		var oBtn=document.getElementById('login_tiao');
+		var oNext=oBtn.previousElementSibling||oBtn.previousSibling;
+		var oList=document.getElementById('list');
+		var oDiv1=document.getElementById('div1');
+		var aLi=oList.children;
+
+		var oBoy=document.getElementById('boy');
+		var oLogin=document.getElementById('login');
+		var oClose=document.getElementById('close');
+		var oBtn1=document.getElementById('btn1');
+		var oPic=document.getElementById('pic');
+		var oBtn2=document.getElementById('btn2');
+		var ologinTitle=document.getElementById('login_title')
+
+		var timer=null;
+		//设置菜单
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].index=i;
+			aLi[i].onmouseover=function(){
+
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].className='';
+				}
+				this.className='active';				
+			};
+				
+		}
+
+		oNext.onmouseover=function(){
+			oDiv1.style.display='block';
+		};
+
+		oNext.onmouseout=function(){
+			timer=setTimeout(function(){
+			oDiv1.style.display='none';
+			},100);
+		};
+
+		oDiv1.onmouseover=function(){
+			clearTimeout(timer);
+			oDiv1.style.display='block';
+		};
+
+		oDiv1.onmouseout=function(){
+			timer=setTimeout(function(){
+			oDiv1.style.display='none';
+			},100);
+		};
+
+		//登陆条
+		oBtn.onclick=function(){
+			oBoy.style.display=oLogin.style.display='block';
+
+			oClose.onclick=function(){
+				oBoy.style.display=oLogin.style.display='none';
+				oPic.style.display='none';
+				oLogin.style.cssText='position:absolute;left:50%;top:50%;margin-left:-195px;margin-top:-225px;';
+			};	
+
+			oBtn1.onclick=function(){
+				oPic.style.display='block';
+			};	
+
+			oBtn2.onclick=function(){
+				oPic.style.display='none';
+			};
+		};
+
+		//拖拽
+		ologinTitle.onmousedown=function(ev){
+			var oEvent=ev||event;
+
+			var scrollL=document.documentElement.scrollLeft||document.body.scrollLeft;
+			var scrollT=document.documentElement.scrollTop||document.body.scrollTop;
+
+			var disX=oEvent.clientX-oLogin.offsetLeft+scrollL;//鼠标down的点到box边缘x轴的固定距离
+			var disY=oEvent.clientY-oLogin.offsetTop+scrollT;//鼠标down的点到box边缘y轴的固定距离
+			//console.log(disX,disY)
+			document.onmousemove=function(ev){
+				var oEvent=ev||event
+
+				var l=oEvent.clientX-disX+195;//登陆条离可视区x轴拖动的距离
+				var t=oEvent.clientY-disY+225;//登陆条离可视区y轴拖动的距离
+				
+				var clientW=document.documentElement.clientWidth-oLogin.offsetWidth+195;//每次登陆条拖拽x轴的距离
+				var clientH=document.documentElement.clientHeight-oLogin.offsetHeight+225;//每次登陆条拖拽y轴的距离
+				//console.log(oLogin.offsetWidth,oLogin.offsetHeight)
+				// console.log(document.documentElement.clientWidth,document.documentElement.clientHeight)
+				//console.log(clientW,clientH)
+				//限制拖拽的范围
+				if(l<=195){
+					l=195;
+				}else if(l>clientW){
+					l=clientW;
+				}
+				if(t<=225){
+					t=225;
+				}else if(t>clientH){
+					t=clientH;
+				}
+				//赋值把每次登陆条拖拽x轴的距离和每次登陆条拖拽y轴的距离赋值给登录框oLogin
+				oLogin.style.left=l+scrollL+'px';
+				oLogin.style.top=t+scrollT+'px';
+				//console.log(l,t)
+			};
+
+			document.onmouseup=function(){
+				//抬起鼠标左键的时候，把移动和抬起的事件对象变为null空对象
+				document.onmousemove=null;
+				document.onmouseup=null;
+
+				oLogin.releaseCapture&&oLogin.releaseCapture();////释放捕获可达到兼容高版本（if简写）
+			};
+
+			oLogin.setCapture&&oLogin.setCapture();//IE低版本兼容，不兼容高版本  捕获(if简写)
+			return false;//清楚鼠标拖动时会选中文字，清除默认事件，兼容高版本
+		};
+	};
+</script>
+
+</head>
+<body>
+	<div id="wrap">
+		<div class="nav clearfix">
+			<a href="javascript:;">更多产品</a>
+			<a href="javascript:;">设置</a>
+			<a href="javascript:;" id="login_tiao">登录</a>
+			<a href="javascript:;">贴吧</a>
+			<a href="javascript:;">视频</a>
+			<a href="javascript:;">地图</a>
+			<a href="javascript:;">hao123</a>
+			<a href="javascript:;">新闻</a>
+			<a href="javascript:;">糯米</a>
+		</div>
+		<div id="div1">
+			<div class="div2"></div>
+			<div class="div3"></div>
+			<ul id="list">
+				<li>搜索设置</li>
+				<li>高级设置</li>
+				<li>关闭预测</li>
+				<li>搜索历史</li>
+			</ul>
+		</div>
+		<div class="logo">
+			<h1>
+				<img src="img/m15.png" alt="img">
+			</h1>
+		</div>
+		<div class="search clearfix" id="search">
+			<input type="text" value="请输入内容" id="t1" class="fl"/>
+			<ul id="search_ul1">
+				<!-- <li>xxx</li> -->
+			</ul>
+			<a href="https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?" class="fl">百度一下</a>
+			<a href="javascript:;"><i class="icon"></i></a>
+		</div>
+		<div class="copy_right">
+			<a href="javascript:;"><img src="img/right_copy.png" height="76" width="653" alt=""></a>
+		</div>
+		<div class="login" id="login">
+			<form action="https://www.baidu.com/" method="post" >
+				<div class="title" id="login_title">
+					<img src="img/1.png" height="47" width="390" alt="1">
+					<i class="icon1" id="close"></i>
+				</div>
+				<div class="login_form">
+					<div class="sj_login clearfix">
+					<a href="javascript:;">短信快捷登录</a>
+					</div>
+					<input type="text" placeholder="手机/邮箱/用户名" class="ipt1" />
+					<input type="text" placeholder="密码" class="ipt2" />
+					<div class="a_radio clearfix">
+						<a href="javascript:;" class="a1">登录遇到问题</a>
+						<a href="javascript:;" class="a2">下次自动登录</a>
+					</div>
+					<input type="submit" class="ipt3" value="提交">
+					<div class="zhuce clearfix">
+						<a href="javascritp:;">立即注册</a>
+					</div>
+				</div>
+				<div class="foot_box">
+					<div class="footer">
+						可以使用以下方式登录
+					</div>
+					<div class="icon_box clearfix">
+						<i class="icon2 fl"></i>
+						<i class="icon3 fl"></i>
+						<i class="icon4 fr" id="btn1"></i>
+					</div>
+				</div>
+			</form>
+			<div id="pic">
+				<a href="javascript:;" class="icon5" id="btn2"></a>
+				<img src="img/erweima.jpg" alt="erweima" />
+			</div>
+		</div>
+	</div>
+	<div class="boy" id="boy"></div>
+</body>
+</html>

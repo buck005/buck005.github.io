@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#volume{
+			transform: rotate(-90deg) translate(-30px);
+			width: 60px;
+		}
+
+		#progress{
+			width: 230px;
+			height: 20px;background-color: #DDD;
+			margin: 10px;
+			position: relative;
+		}
+
+		#inner{
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<video src="statics/1.mp4"></video>
+	<div>
+		<button id="play">播放</button>
+		<button id="pause">暂停</button>
+		<button id="mute">静音</button>
+		<button id="forward">步进</button>
+		<button id="backward">步退</button>
+		<input type="range" min="0" max="100" id="volume" value="100">
+	</div>
+	<div id="progress">
+		<div id="inner"></div>
+	</div>
+	<script>
+		var oVideo = document.getElementsByTagName('video')[0];
+		var playBtn = document.getElementById('play');
+		var pauseBtn = document.getElementById('pause');
+		var muteBtn = document.getElementById('mute');
+
+		var forwardBtn = document.getElementById('forward');
+		var backwardBtn = document.getElementById('backward');
+
+		var volumeControl = document.getElementById('volume');
+		var progressInner = document.getElementById('inner');
+
+		playBtn.onclick = function(){
+			oVideo.play();
+		}
+
+		pauseBtn.onclick = function(){
+			oVideo.pause();
+		}
+
+		muteBtn.onclick = function(){
+			oVideo.muted = !oVideo.muted;
+		}
+
+		forwardBtn.onclick = function(){
+			oVideo.currentTime = oVideo.currentTime+1
+		}
+
+		backwardBtn.onclick = function(){
+			oVideo.currentTime = oVideo.currentTime-1	
+		}
+
+		volumeControl.oninput = function(){
+			oVideo.volume = volumeControl.value/100;
+		}
+
+		oVideo.onended = function(){
+			// alert('他好我也好');
+		}
+
+		oVideo.ontimeupdate = function(){
+			progressInner.style.width = `${oVideo.currentTime/oVideo.duration*100}%`
+		}
+
+	</script>
+</body>
+</html>

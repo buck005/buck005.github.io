@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+	function toDou(n){
+		return n<10?'0'+n:''+n;	
+	};
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var oP=document.getElementById('p');
+		var oSpan=document.getElementById('span');
+		var oImg=document.getElementById('img');	
+		var ary=['即将出售','限时抢购'];
+		var ary1=['6','1800'];
+		
+		var timer=null;
+		var m=ary1[0];
+		var n=ary1[1];
+		
+		timer=setInterval(function(){
+			m--;
+			oP.innerHTML=ary[0];
+			oSpan.innerHTML= toDou(parseInt(m/60))+'分'+ toDou(m%60)+'秒';
+			if(m==0){
+				clearInterval(timer);
+				timer=setInterval(function(){
+					n--;
+					oP.innerHTML=ary[1];
+					oP.style.background='red';
+					oImg.src='img/shop4.png';
+					oSpan.innerHTML=toDou(parseInt(n/60))+'分'+toDou(n%60)+'秒';	
+				},1000);
+				
+			}	
+		},1000);
+		
+	};
+</script>
+
+<style>
+#box {
+	width: 300px;
+	height: 435px;
+	position: relative;
+	margin: 0 auto;
+	border:1px solid #ccc;
+}
+#box img{
+	width:100%;
+
+}
+#box p{
+	position:absolute;
+	left:0;
+	top:-16px;
+	background:#6F3;
+	width:100%;
+	height:30px;
+	text-align:center;
+	line-height:30px;
+	color:#fff;	
+}
+#box span{
+	position:absolute;
+	left:0;
+	bottom:0;
+	background:#f80;
+	width:100%;
+	height:30px;
+	text-align:center;
+	line-height:30px;	
+	color:#339;
+}
+</style>
+</head>
+
+<body>
+<div id="box"> 
+	<img id="img" src="img/shop.png" alt="img"/>
+	<p id="p">即将出售</p>
+	<span id="span">00分00秒</span> 
+</div>
+</body>
+</html>

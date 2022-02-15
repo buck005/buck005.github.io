@@ -1,0 +1,97 @@
+﻿死鱼
+	x
+	y
+
+	current
+
+	rotate
+
+	type
+
+渔网
+	x
+	y
+
+	type
+
+金币
+	x
+	y
+
+	type
+------------------
+自动化工具
+
+NPM  -> node package manager
+websocket -> socket.io
+
+$ npm install 
+------------------
+1. 行间 <button onclic="run()" style="asdkjas"></button> 
+2.分离
+	内联 <script></script>
+	外联 <script src></script>
+3.包
+	Bower -> bower install jquery
+4.模块化
+	node package manager -> 代码复用
+
+	目前比较经典的前端项目文件组织形式
+	scripts/
+	styles/
+	images/
+
+	project/
+		src/
+			未压缩的原始文件
+				测试环境
+				scripts/
+				styles/
+				statics/
+					images/
+					fonts/
+
+		dist/
+			压缩混淆过的结果文件
+				生产环境
+				线上环境
+
+		readme.md
+			项目简介.txt
+------------------
+grunt/gulp
+grunt 
+
+：基于配置的构建工具
+
+首先要有包导出
+	module.exports = function(grunt){
+
+		// 加载第三方模块
+		grunt.loadNpmTasks('grunt-contrib-uglify')
+
+		grunt.initConfig({
+			// 主task
+			uglify:{
+
+				子task
+				a:{
+					src:'',
+					dest:''
+				},
+				b:
+			}
+		})
+
+		grunt.registerTask('default',['uglify'])
+	}
+------------------
+gulp
+安装全局
+npm i -g gulp
+安装本地gulp
+npm i gulp --save-dev
+------------------
+
+gulp/grunt使用的glob语法：
+https://github.com/isaacs/node-glob

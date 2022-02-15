@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+<style>
+*{ padding:0; margin:0;}
+body{ height:3000px;}
+div{ width:300px; height:300px; float:left; position:relative; top:100px; left:0;}
+#xdiv{ background:url(m1.jpg) no-repeat 0 0;margin-left:300px;}
+#bdiv{ margin-left:40px; background:url(b1.jpg) no-repeat 0 0; display:none; overflow:hidden;}
+#xdiv span{ width:100px; height:100px; position:absolute; top:0; left:0; background:#FF0; opacity:0.7; display:none;cursor:move;}
+#bdiv img{ position:absolute; top:0; left:0;}
+</style>
+<script>
+
+//放大原理：
+//1.通过事件对象先把鼠标移到黄色span块中心
+//2.计算黄色span块的移动范围，黄色span块的大小为小图片的1/3
+//3.通过span移动的百分比乘以(大图片的本身的宽高减去放大图片盒子的宽高)=大图片的left和top即可
+
+function getPos(obj){
+	var l=0;
+	var t=0;
+	
+	while(obj){
+		l+=obj.offsetLeft;
+		t+=obj.offsetTop;
+
+		obj=obj.offsetparent;
+	}
+	return {left:l,top:t}
+};//封装查找定位父级
+window.onload=function(){
+	var xDiv=document.getElementById('xdiv');//存放小图片
+	var bDiv=document.getElementById('bdiv');//存放大图片
+	var oSpan=xDiv.children[0];//黄色span块
+	var oBigImg=document.getElementById('bigImg');
+
+	/*xDiv.onmouseenter=function(){
+		bDiv.style.display='block';
+		oSpan.style.display='block';
+	};
+
+	xDiv.onmouseleave=function(){
+		bDiv.style.display='none';
+		oSpan.style.display='none';
+	};*/
+	xDiv.onmouseover=function(ev){
+		var oEvent=ev||event;
+		var oFrom=oEvent.fromElement||oEvent.relatedTarget;//oEvent.relatedTarget兼容高版本，不兼容IE8以下,oEvent.fromElement 不兼容火狐，其他都兼容
+		if(xDiv.contains(oFrom))return;//检验里面有子元素就return 不执行下面代码
+		bDiv.style.display='block';
+		oSpan.style.display='block';
+	};
+
+	xDiv.onmouseout=function(ev){
+		var oEvent=ev||event;
+		var oTo=oEvent.toElement||oEvent.relatedTarget;				
+		if(xDiv.contains(oTo))return;
+		bDiv.style.display='none';
+		oSpan.style.display='none';
+	};
+
+
+	xDiv.onmousemove=function(ev){
+		//获取兼容事件对象
+		var oEvent=ev||event;//兼容火狐
+		var x=oEvent.clientX;//鼠标x轴坐标
+		var y=oEvent.clientY;//鼠标y轴坐标
+
+		var offW=oSpan.offsetWidth;//span本身宽度
+		var offH=oSpan.offsetHeight;//span本身高度
+
+
+		var scrollT=document.documentElement.scrollTop||document.body.scrollTop;//鼠标滚动高度
+		var scrollL=document.documentElement.scrollLeft||document.body.scrollLeft;//鼠标滚动宽度
+		// ////把获取到的x，y值赋值给oSpan的left和top值
+		// oSpan.style.left=(x-offW/2-300)+scrollL+'px';
+		// oSpan.style.top=(y-offH/2)+scrollT+'px';
+
+		var xDivW=xDiv.offsetWidth;//xDiv本身宽度
+		var xDivH=xDiv.offsetHeight;//xDiv本身高度
+
+		
+		//var l=(x-offW/2)-xDiv.offsetLeft+scrollL;//
+		//var t=(y-offH/2)-xDiv.offsetTop+scrollT;//
+		var l=(x-offW/2)-getPos(xDiv).left+scrollL;//黄色span块x轴移动的距离
+		var t=(y-offH/2)-getPos(xDiv).top+scrollT;//黄色span块y轴移动的距离
+		
+		//判断黄色span块都移动的范围
+		if(l<0){
+			l=0;
+		}
+
+		if(l>(xDivW-offW)){
+			l=xDivW-offW;//span小盒子的移动x轴范围
+		}
+
+		if(t<0){
+			t=0
+		}
+
+		if(t>(xDivH-offH)){
+			t=xDivH-offH;//span小盒子的移动y轴范围
+		}
+		//给span赋值得到left和top的值
+		oSpan.style.left=l+'px';
+		oSpan.style.top=t+'px';
+		var m=-l/(xDiv.offsetWidth-oSpan.offsetWidth);//黄色span块x轴移动的百分比
+		var n=-t/(xDiv.offsetHeight-oSpan.offsetHeight);//黄色span块y轴移动的百分比
+
+		oBigImg.style.left=(oBigImg.offsetWidth-bDiv.offsetWidth)*(m)+'px';
+		oBigImg.style.top=(oBigImg.offsetHeight-bDiv.offsetHeight)*(n)+'px';
+
+	};
+
+
+};
+</script>
+</head>
+
+<body>
+<div id="xdiv">
+	<span></span>
+</div>
+<div id="bdiv">
+	<img src="b1.jpg" id="bigImg" />
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+	#div1{position: fixed;left: 0; bottom: 0; width: 100%; text-align: center;}
+	img{width:64px; height: 64px;}
+	</style>
+
+	<script>
+		window.onload=function(){
+			var oDiv=document.getElementById('div1');
+			var aImg=document.getElementsByTagName('img');
+			var aIpt=document.getElementsByTagName('input');
+
+			document.onmousemove=function(ev){
+				var oEvent=ev||event;
+
+				for(var i=0;i<aImg.length;i++){
+					//求距离
+					
+					var a=aImg[i].offsetLeft-oEvent.clientX+aImg[i].offsetWidth/2;
+					var b=aImg[i].offsetTop-oEvent.clientY+aImg[i].offsetHeight/2+oDiv.offsetTop;
+					var dis=Math.sqrt(a*a+b*b);//相当于c
+					//a/b=c/d  scale=a/b  c=scale*d
+					
+					var scale=1-dis/300;//比值为1---0
+					aIpt[i].value=scale.toFixed(2);
+					if(scale<0.5) scale=0.5;
+					
+
+					aImg[i].style.width=128*scale+'px';
+					aImg[i].style.height=128*scale+'px';
+				}
+			};
+
+		};
+
+	</script>
+</head>
+
+	
+<body>
+	<input type="text" value="" />
+	<input type="text" value="" />
+	<input type="text" value="" />
+	<input type="text" value="" />
+	<input type="text" value="" />
+
+	<div id="div1">
+		<img src="img2/1.png" alt=""/>
+		<img src="img2/2.png" alt=""/>
+		<img src="img2/3.png" alt=""/>
+		<img src="img2/4.png" alt=""/>
+		<img src="img2/5.png" alt=""/>
+	</div>
+</body>
+</html>

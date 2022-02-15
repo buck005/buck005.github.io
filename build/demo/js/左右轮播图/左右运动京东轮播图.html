@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+li {
+	list-style: none;
+}
+img {
+	border: none;
+}
+.box {
+	width: 670px;
+	height: 240px;
+	margin: 50px auto;
+	position: relative;
+	overflow: hidden;
+}
+.imgBox{width: 670px;
+	height: 240px; position:absolute;left: 0;top: 0; background:#000;}
+.imgBox img {
+	width: 670px;
+	height: 240px;
+	float: left;
+	_opacity:0;
+
+}
+.imgBox img.active {
+	opacity:1;
+	z-index:1;
+}
+.num {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	z-index:99;
+}
+.num li {
+	float: left;
+	margin-right: 5px;
+	width: 22px;
+	height: 22px;
+	background: #999;
+	color: #FFF;
+	line-height: 22px;
+	text-align: center;
+	border-radius: 50% 50%;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	cursor:pointer;
+}
+.num .active {
+	background: #E4393C;
+}
+</style>
+<script src="move4.js"></script>
+<script>
+	window.onload=function (){
+		var oNum=document.getElementById('num');
+		var aItem=oNum.getElementsByTagName('li');
+		var oImg=document.getElementById('imgs');
+		var aImg=oImg.getElementsByTagName('img');	
+		
+		oImg.style.width=aImg[0].offsetWidth*aImg.length+'px';
+		for(var i=0;i<aItem.length;i++){
+			aItem[i].index=i;
+			aItem[i].onclick=function (){
+				for(var i=0;i<aItem.length;i++){
+					aItem[i].className='';
+					aImg[i].className='';
+					move(oImg,{opacity:0,zIndex:0})//渐隐线
+				}
+				this.className='active';
+				//aImg[this.index].className='active';
+				move(aImg[this.index],{opacity:1,zIndex:1})//渐隐线
+				//aImg.style.left=-this.index*aImg[0].offsetWidth+'px';
+				move(oImg,{left:-this.index*aImg[0].offsetWidth})//左右运动
+			};	
+		}
+	};
+</script>
+</head>
+
+<body>
+<div class="box">
+  <div class="imgBox" id="imgs"> 
+      <a href="javascript:;"><img src="img/pic1.jpg" alt="" class="active"></a> 
+      <a href="javascript:;"><img src="img/pic2.jpg" alt=""></a> 
+      <a href="javascript:;"><img src="img/pic3.jpg" alt=""></a> 
+      <a href="javascript:;"><img src="img/pic4.jpg" alt=""></a> 
+      <a href="javascript:;"><img src="img/pic5.jpg" alt=""></a>
+      <a href="javascript:;"><img src="img/pic6.jpg" alt=""></a> 
+  </div>
+  <ul class="num" id="num">
+     <li class="active">1</li>
+     <li>2</li>
+     <li>3</li>
+     <li>4</li>
+     <li>5</li>
+     <li>6</li>
+  </ul>
+</div>
+</body>
+</html>

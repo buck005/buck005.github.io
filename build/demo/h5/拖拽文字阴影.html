@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文字阴影</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            list-style: none;
+        }
+        #box{
+            position: absolute;
+            left:30px;
+            top:30px;
+            width:100px;
+            height:100px;
+            background: red;
+            border-radius:50%;
+            -webkit-box-shadow:5px 5px 5px 15px yellow;
+            cursor:move;
+        }
+        #box1{
+            width:400px;
+            height:100px;
+            position:absolute;
+            left:50%;
+            top:50%;
+            margin-left:-150px;
+            margin-top:-50px;
+            text-align: center;
+            font:80px/100px '微软雅黑';
+            text-shadow:3px 3px 5px red;
+            /*border: 1px solid #ccc;*/
+
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box1">文字阴影</div>
+    <script>
+        var oBox=document.querySelector('#box');
+        var oBox1=document.querySelector('#box1');
+
+        oBox.onmousedown=function(ev){
+            var clientX=ev.clientX-oBox.offsetLeft;
+            var clientY=ev.clientY-oBox.offsetTop;
+            document.onmousemove=function(ev){
+                var l=ev.clientX-clientX;
+                var t=ev.clientY-clientY;
+                oBox.style.left=l+'px';
+                oBox.style.top=t+'px';
+                //计算盒子oBox的中心
+                var a=oBox.offsetLeft+oBox.offsetWidth/2;
+                var b=oBox.offsetTop+oBox.offsetHeight/2;
+                //console.log(a,b);
+                //计算盒子oBox1的中心
+                var clientX1=oBox1.offsetLeft+oBox1.offsetWidth/2;
+                var clientY1=oBox1.offsetTop+oBox1.offsetHeight/2;
+                var x=clientX1-a;
+                var y=clientY1-b;
+                //console.log(clientX1,clientY1);
+                var z=Math.sqrt(x*x+y*y);//计算两盒子的斜边距离
+                console.log(z);
+                oBox1.style.textShadow=z/100+'px '+z/100+'px '+z/100+'px red';
+
+            };
+            document.onmouseup=function(){
+                document.onmousemove=document.onmuseup=null;
+            };
+        };
+
+    </script>
+</body>
+</html>

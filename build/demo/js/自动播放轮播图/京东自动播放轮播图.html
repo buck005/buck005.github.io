@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+li {
+	list-style: none;
+}
+img {
+	border: none;
+}
+.box {
+	width: 670px;
+	height: 240px;
+	margin: 50px auto;
+	position: relative;
+}
+.box .btn_left{
+	position:absolute;
+	left:0;
+	top:50%;
+	margin-top:22px;	
+}
+.box .btn_right{
+	position:absolute;
+	right:0;
+	top:50%;
+	margin-top:22px;	
+}
+.imgBox img {
+	width: 670px;
+	height: 350px;
+	display: none;
+}
+.imgBox img.active {
+	display: block;
+}
+.num {
+	position: absolute;
+	bottom: 210px;
+	right: 10px;
+}
+.num li {
+	float: left;
+	margin-right: 5px;
+	width: 22px;
+	height: 22px;
+	background: #999;
+	color: #FFF;
+	line-height: 22px;
+	text-align: center;
+	border-radius: 50% 50%;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	cursor:pointer;
+}
+.num .active {
+	background: #E4393C;
+}
+</style>
+<script>
+	/*window.onload=function (){
+		var oNum=document.getElementById('num');
+		var aItem=oNum.getElementsByTagName('li');
+		var oImg=document.getElementById('imgs');
+		var aImg=oImg.getElementsByTagName('img');	
+		var oBtnLeft=document.getElementById('btn_left');
+		var oBtnRight=document.getElementById('btn_right');
+		
+		for(var i=0;i<aItem.length;i++){
+			aItem[i].index=i;
+			aItem[i].onmouseover=function (){
+				for(var i=0;i<aItem.length;i++){
+					aItem[i].className='';
+					aImg[i].className='';	
+				}
+				this.className='active';
+				aImg[this.index].className='active';
+			};	
+		}
+	};*/
+	
+	window.onload=function (){
+		var oNum=document.getElementById('num');
+		var aItem=oNum.getElementsByTagName('li');
+		var oImg=document.getElementById('imgs');
+		var aImg=oImg.getElementsByTagName('img');	
+		var oBtnLeft=document.getElementById('btn_left');
+		var oBtnRight=document.getElementById('btn_right');
+		var oBox=document.getElementById('box');
+		var n=0;
+		var timer=null;
+
+		function tab(index){
+			for(var i=0;i<aItem.length;i++){
+					aItem[i].className='';
+					aImg[i].className='';	
+				}
+				aItem[index].className='active';
+				aImg[index].className='active';
+			};		
+	
+		for(var i=0;i<aItem.length;i++){
+			aItem[i].index=i;
+			aItem[i].onmouseover=function (){
+				tab(this.index);	
+				n=this.index;
+			};
+		}
+		oBtnRight.onmouseover=function(){
+			oBtnRight.src='img/right-h.png';
+		};
+		oBtnRight.onmouseout=function(){
+			oBtnRight.src='img/right.png';
+		};
+		oBtnLeft.onmouseover=function(){
+			oBtnLeft.src='img/left-h.png';
+		};
+		oBtnLeft.onmouseout=function(){
+			oBtnLeft.src='img/left.png';
+		};
+		
+		function next(){
+				n++;
+				if(n>=aItem.length){
+					n=0;	
+				}
+				tab(n);
+		};
+		oBtnRight.onclick=next;
+		timer=setInterval(next,1000);
+	
+		oBtnLeft.onclick=function(){
+			n--;
+			if(n<0){
+				n=aItem.length-1;
+			}
+			tab(n);	
+		};
+		oBox.onmouseover=function(){
+			clearInterval(timer);	
+		};
+		oBox.onmouseout=function(){
+			timer=setInterval(next,1000);
+		};
+	};
+</script>
+</head>
+
+<body>
+<div class="box" id="box">
+  <div class="imgBox" id="imgs"> 
+      <a href="javascript:;"><img src="img/pic1.jpg" alt="" class="active"></a> 
+      <a href="javascript:;"><img src="img/pic2.jpg" alt=""></a> 
+      <a href="javascript:;"><img src="img/pic3.jpg" alt=""></a> 
+      <a href="javascript:;"><img src="img/pic4.jpg" alt=""></a> 
+      <a href="javascript:;"><img src="img/pic5.jpg" alt=""></a>
+      <a href="javascript:;"><img src="img/pic6.jpg" alt=""></a> 
+  </div>
+  <ul class="num" id="num">
+     <li class="active">1</li>
+     <li>2</li>
+     <li>3</li>
+     <li>4</li>
+     <li>5</li>
+     <li>6</li>
+  </ul>
+  <a href="javascript:;"><img src="img/left.png" class="btn_left" id="btn_left"/></a>
+  <a href="javascript:;"><img src="img/right.png" class="btn_right" id="btn_right"/></a>
+</div>
+</body>
+</html>

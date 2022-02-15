@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		audio{
+			width: 100%;
+		}
+
+		li.active:before{
+			content: url(statics/play.gif);
+		}
+	</style>
+</head>
+<body>
+	<audio src="" controls></audio>
+	<ul>
+		<li><a href="javascript:void(0);">花房姑娘</a></li>
+		<li><a href="javascript:void(0);">喜剧之王</a></li>
+		<li><a href="javascript:void(0);">counting-starts</a></li>
+		<li><a href="javascript:void(0);">greenslave</a></li>
+		<li><a href="javascript:void(0);">young-for-you</a></li>
+	</ul>
+	<button class="mode-switch" data-mode="normal">顺序播放</button>
+	<button class="mode-switch" data-mode="repeat">单曲循环</button>
+	<button class="mode-switch" data-mode="random">随机播放</button>
+	<button class="mode-switch" data-mode="listRepeat">列表循环</button>
+	<button class="mode-switch" data-mode="single">单曲播放</button>
+	<button id="next">下一首</button>
+	<script>
+		var musics =  [
+			'花房姑娘',
+			'喜剧之王',
+			'counting-starts',
+			'greenslave',
+			'young-for-you'
+		]
+
+		var mode = 'normal';
+		var currentIndex;
+
+		var aModeSwitch = document.querySelectorAll('.mode-switch')
+		var next = document.querySelector('#next');
+
+		for (var i = aModeSwitch.length - 1; i >= 0; i--) {
+			aModeSwitch[i].onclick = function(){
+				mode = this.dataset.mode
+			}
+		}
+
+		var aLi = document.getElementsByTagName('li');
+		var oAudio = document.getElementsByTagName('audio')[0];
+
+		for (let i = aLi.length - 1; i >= 0; i--) {
+			aLi[i].onclick = function(){
+				currentIndex = i;
+				play();
+			}
+		}
+
+		next.onclick = function(){
+			if( mode == 'random' ){
+				currentIndex = rnd(0,musics.length,currentIndex)
+				play();
+
+				return;
+			}
+
+			if( currentIndex == musics.length-1 ){
+				currentIndex = -1
+			}
+
+			currentIndex++;
+
+			play();
+		}
+
+		oAudio.onended = function(){
+			if( mode == 'normal' ){
+
+				if( currentIndex == musics.length-1 ){
+					clear();
+					return;
+				}
+
+				currentIndex++;
+				play();
+
+			} else if( mode == 'repeat' ){
+				play();
+			} else if( mode == 'single' ){
+				clear();
+			} else if( mode == 'listRepeat' ){
+currentIndex = ++currentIndex%(musics.length)
+				play();
+			} else if( mode == 'random' ){
+				currentIndex = rnd(0,musics.length,currentIndex)
+				play();
+			}
+		}
+
+		function play(){
+			oAudio.src = `statics/music/${musics[currentIndex]}.mp3`
+			oAudio.play();
+
+			clear();
+			aLi[currentIndex].classList.add('active');
+		}
+
+		function clear(){
+			for (var i = aLi.length - 1; i >= 0; i--) {
+				aLi[i].classList.remove('active');
+			}
+		}
+
+		function rnd(n,m,except){
+			var rd = parseInt(Math.random()*(m-n)+n)
+			return (rd == except)?rnd(n,m,except):rd
+		}
+	</script>
+</body>
+</html>

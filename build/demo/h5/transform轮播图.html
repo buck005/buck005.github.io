@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 100px auto;
+            text-align: center;
+            font: 50px/400px '微软雅黑';
+            color: #fff;
+            transform-style: preserve-3d;
+            /*-webkit-box-reflect:below;*/
+        }
+
+        #box img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 400px;
+            /*background-size:100% 100%;*/
+        }
+
+        #box2 {
+            width: 80px;
+            margin: 0 auto;
+        }
+
+        .current, .before1, .before2, .after1, .after2 {
+            width: 100%;
+            height: 100%;
+            background: red;
+
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: 1s all linear;
+        }
+
+        .before1 {
+
+            opacity: .5;
+            transform: perspective(800px) translateX(-180px) rotateY(45deg);
+        }
+
+        .before2 {
+            opacity: 0;
+            transform: perspective(800px) translateX(-300px) rotateY(45deg);
+        }
+
+        .after1 {
+            opacity: .5;
+            transform: perspective(800px) translateX(180px) rotateY(-45deg);
+        }
+
+        .after2 {
+            opacity: 0;
+            transform: perspective(800px) translateX(300px) rotateY(-45deg);
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBox = document.querySelector('#box');
+            var aDiv = document.querySelectorAll('#box>div')
+            var oLeft = document.querySelector('#left');
+            var oRight = document.querySelector('#right');
+
+            var classArr = ['before2', 'before1', 'current', 'after1', 'after2'];
+            oLeft.onclick = function () {
+                classArr.push(classArr.shift());
+                forClass();
+            };
+            oRight.onclick = function () {
+                classArr.unshift(classArr.pop());
+                forClass();
+            };
+
+
+
+            forClass();
+            function forClass() {
+                for (var i = 0; i < classArr.length; i++) {
+                    aDiv[i].className = classArr[i];
+                }
+                ;
+            };
+        };
+    </script>
+</head>
+<body>
+<div id="box">
+    <div><img src="img/1.jpg" alt=""></div>
+    <div><img src="img/2.jpg" alt=""></div>
+    <div><img src="img/3.jpg" alt=""></div>
+    <div><img src="img/4.jpg" alt=""></div>
+    <div><img src="img/5.jpg" alt=""></div>
+</div>
+<div id="box2">
+    <input type="button" value="《" id="left"/>
+    <input type="button" value="》" id="right"/>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+*{ margin:0; padding:0; list-style:none; font-family: "微软雅黑"}
+#div1{width:400px;height:30px;background:#999;margin:0 auto;}
+#div2{width:0%;height:30px;background: #666;text-align:center;line-height:30px;color:#fff;}
+img{width:50px;}
+
+</style>
+<script>
+	window.onload=function(){
+		var oDiv1=document.getElementById('div1')
+		var oDiv2=document.getElementById('div2')
+		
+		var n=0;
+		var count=77;
+		var timer=null;
+
+		
+		timer=setInterval(function(){
+			for(var i=0;i<count;i++){
+			var oImg=new Image();
+
+			oImg.src='img1/'+i+'.jpg';
+			oImg.onload=function(){
+				n++;
+				var progress=parseInt(n/count*100)+'%';
+				//console.log(parseInt(n/count*100)+'%');	
+				//alert(parseInt(n/count*100)+'%');
+			
+				oDiv2.style.width=progress;
+				oDiv2.innerHTML=progress;
+
+				if(i==count){
+				clearInterval(timer);
+			}
+
+			}
+			
+			document.body.appendChild(oImg);
+			}
+		},1000);
+	};
+</script>
+</head>
+<body>
+<div id="div1">
+	<div id="div2"></div>
+</div>
+
+</body>
+</html>

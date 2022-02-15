@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>立方体</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin: 200px auto;
+            perspective: 800px;
+
+        }
+        .contianer{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: 2s;
+            /*transform:rotateY(45deg);*/
+
+        }
+        .contianer > div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            text-align: center;
+            font: 50px/200px '微软雅黑';
+            color: #fff;
+            text-shadow: 0 0 4px #000;
+            transition: 1s;
+        }
+
+        .contianer:hover {
+            -webkit-transform: rotateY(180deg) scale(1.1);
+        }
+
+        .contianer > div:nth-child(1) {
+            transform: translateZ(100px);
+        }
+
+        .contianer > div:nth-child(2) {
+            transform: translateZ(-100px) rotateY(180deg);
+        }
+
+        .contianer > div:nth-child(3) {
+            transform: translateY(-100px) rotateX(90deg);
+        }
+
+        .contianer > div:nth-child(4) {
+            transform: translateY(100px) rotateX(-90deg);
+        }
+
+        .contianer > div:nth-child(5) {
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+
+        .contianer > div:nth-child(6) {
+            transform: translateX(100px) rotateY(90deg);
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="contianer">
+        <div>前</div>
+        <div>后</div>
+        <div>上</div>
+        <div>下</div>
+        <div>左</div>
+        <div>右</div>
+    </div>
+</div>
+<script>
+    var aDiv = document.querySelectorAll('.contianer>div')
+    for (var i = 0; i < aDiv.length; i++) {
+        aDiv[i].style.background='rgba('+ran(0,256)+','+ran(0,256)+','+ran(0,256)+',.6)';
+    }
+
+    function ran(n,m){
+        return parseInt(Math.random()*(m-n)+n);
+    };
+</script>
+</body>
+</html>

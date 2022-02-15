@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽放大banner图</title>
+	<style>
+		*{margin: 0; padding: 0; list-style: none;}
+		#div1{width: 100%; height: 400px; background: #ccc; position: relative; overflow: hidden;}
+		#div1 ul{position: absolute; left: 0; top: 120px; }
+		#div1 ul li{float: left; width: 260px; height: 179px; position: relative; cursor: pointer; background: red;}
+		#div1 ul li img{width: 260px; height: auto;}
+		#div1 ul li span{position: absolute; left: 45%; top: 45%; background: #fff; }
+	</style>
+	
+	<script src="move.js"></script>
+	<script>
+		window.onload=function(){
+			var oDiv=document.getElementById('div1');
+			var oUl=document.getElementById('ul1');
+			var aLi=oUl.children;
+			var aSpan=oUl.getElementsByTagName('span');
+			var aImg=oUl.getElementsByTagName('img')
+
+			oUl.style.width=aLi[0].offsetWidth*(aLi.length)+'px';
+
+			//1.拖拽
+			oUl.onmousedown=function(ev){
+				var event=ev||event
+
+				var disX=event.clientX-oUl.offsetLeft; //鼠标按下的固定距离
+				document.onmousemove=function(ev){
+					var event=ev||event
+
+					var l=event.clientX-disX;
+
+					//限制l的范围
+					if(l>oDiv.offsetWidth/2-(0+0.5)*aLi[0].offsetWidth)
+						l=oDiv.offsetWidth/2-(0+0.5)*aLi[0].offsetWidth;
+
+					if(l<oDiv.offsetWidth/2-(aLi.length-1+0.5)*aLi[0].offsetWidth)
+						l=oDiv.offsetWidth/2-(aLi.length-1+0.5)*aLi[0].offsetWidth;
+
+					oUl.style.left=l+'px';
+
+					setSize();// 2.修改图
+
+				};
+
+				document.onmouseup=function(){
+					document.onmousemove=document.onmouseup=null;
+				};
+				return false;
+			};
+
+			function setSize(){
+				//修改每一张图片的大小
+				for(var i=0; i<aLi.length; i++){
+					//计算距离  oDiv的中心到aLi的中心距离
+					var dis=Math.abs(oDiv.offsetWidth/2-(aLi[i].offsetWidth/2+aLi[i].offsetLeft+oUl.offsetLeft));
+					
+					var scale=1-dis/800;//计算
+					//console.log(dis,scale);
+					aSpan[i].innerHTML=scale.toFixed(2);
+					if(scale<0.5) scale=0.5;
+					//修改图  使用
+					aImg[i].style.width=scale*520+'px';
+					aImg[i].style.height=scale*358+'px';
+					aImg[i].style.marginLeft=-(aImg[i].offsetWidth-aLi[i].offsetWidth)/2+'px';
+					aImg[i].style.marginTop=-(aImg[i].offsetHeight-aLi[i].offsetHeight)/2+'px';
+					aLi[i].style.zIndex=parseInt(scale*1000);
+					aLi[i].style.opacity=scale;
+				}
+			};
+
+			//3.设置大小
+			function setCenter(n){
+				oUl.style.left=oDiv.offsetWidth/2-(n+0.5)*aLi[0].offsetWidth;
+			};
+
+			setCenter(3);
+			setSize();
+			//4.修改窗口尺寸大小
+			window.onresize=setSize;
+		};	
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<ul id="ul1">
+			<li><span></span><img src="img3/17367597244fe29662995cb.jpg" alt="" /></li>
+			<li><span></span><img src="img3/1739248454fe29641ee8f1.jpg" alt="" /></li>
+			<li><span></span><img src="img3/17958872784fe2965867109.jpg" alt="" /></li>
+			<li><span></span><img src="img3/4134521004fe2a83303d01.jpg" alt="" /></li>
+			<li><span></span><img src="img3/67241375551cf94212540b.jpg" alt="" /></li>
+			<li><span></span><img src="img3/7669900194fe295f319297.jpg" alt="" /></li>
+			<li><span></span><img src="img3/9367157484fe2964d95349.jpg" alt="" /></li>
+			<li><span></span><img src="img3/9480039934ff52fc547cc5.jpg" alt="" /></li>
+		</ul>
+	</div>
+</body>
+</html>

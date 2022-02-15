@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background: black;
+			text-align: center;
+		}
+
+		canvas{
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300"></canvas>
+	<script src="common.js"></script>
+	<script>
+		var canvas = document.getElementById('canvas');
+
+		var ctx = canvas.getContext('2d');
+		var d = 0;
+		var timer;
+
+		ctx.lineWidth = 20;
+		ctx.lineCap = 'round';
+
+		setInterval(function(){
+			clear(ctx);
+
+			// 设置文字样式
+			ctx.font=`${40}px Arial Black`;
+			ctx.fillText('Apple Watch',20,120);
+
+			ctx.lineWidth = 20;
+
+			ctx.stroke();
+
+			var date = new Date();
+			var hour = date.getHours();
+			var minute = date.getMinutes();
+			var second = date.getSeconds();
+			var millisecond = date.getMilliseconds();
+
+			// 画秒针
+			ctx.beginPath();
+			ctx.strokeStyle = '#F5003E';
+			ctx.arc(350,150,100,d2a(-90),d2a(((second+millisecond/1000)/60*360)-90),false);
+			ctx.stroke();
+
+			// 画分针
+			ctx.beginPath();
+			ctx.strokeStyle = '#ABFF10';
+			ctx.arc(350,150,75,d2a(-90),d2a(((minute+second/60)/60*360)-90),false);
+			ctx.stroke();
+
+			// 画时针
+			ctx.beginPath();
+			ctx.strokeStyle = '#23FBF2';
+			ctx.arc(350,150,50,d2a(-90),d2a(((hour + minute/60)%12/12*360)-90),false);
+
+			ctx.fillText(`${addZero(hour)}:${addZero(minute)}:${addZero(second)}`,470,150)
+
+			ctx.stroke();
+		},16)
+
+		function addZero(n){
+			return n > 10 ? n : '0'+n
+		}
+
+	</script>
+</body>
+</html>
+

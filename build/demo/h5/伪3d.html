@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+            background: green;
+            transform-style: preserve-3d;
+            transform: perspective(800px) rotateY(45deg);
+        }
+
+        .one, .two, .three, .four,.five,.six {
+            line-height: 200px;
+            font-size: 50px;
+            color: #fff;
+            text-align: center;
+            float: left;
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+            background: #f80;
+            transition: .3s;
+        }
+
+        .box:active .one {
+            transform: translateX(200px);
+        }
+
+        .box:active .two {
+            transform: translateY(200px);
+        }
+
+        .box:active .three {
+            transform: translateZ(200px);
+        }
+
+        .box:active .four {
+            transform: translateZ(-800px);
+        }
+
+        .box:active .five {
+            transform: translateX(-200px);
+        }
+        .box:active .six {
+            transform: translateY(-200px);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="one">one</div>
+    <div class="two">two</div>
+    <div class="three">shree</div>
+    <div class="four">four</div>
+    <div class="five">five</div>
+    <div class="six">six</div>
+</div>
+</body>
+</html>

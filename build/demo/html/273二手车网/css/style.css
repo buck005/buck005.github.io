@@ -1,0 +1,208 @@
+/* LESS Document */
+body {
+  background: #f2f2f2;
+  -height: 2000px;
+}
+body .loginbar .logo {
+  width: 20%;
+  max-width: 280px;
+  min-width: 140px;
+}
+body .loginbar .logo h1 {
+  height: 50px;
+  display: table-cell;
+  vertical-align: middle;
+}
+body .loginbar .logo h1 a img {
+  width: 100%;
+}
+body .loginbar .map a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  background: url(../img/map.PNG) no-repeat 0 50%;
+  padding-left: 14px;
+}
+body .content {
+  margin: 0 auto;
+  max-width: 640px;
+  min-width: 320px;
+}
+body .content .head .banner_box {
+  position: relative;
+}
+body .content .head .banner_box .banner {
+  display: block;
+}
+body .content .head .banner_box .banner img {
+  width: 100%;
+}
+body .content .head .search {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+body .content .head .search .soo input {
+  width: 100%;
+  height: 36px;
+  padding-left: 46px;
+  box-sizing: border-box;
+}
+body .content .head .search .soo .icon {
+  position: absolute;
+  left: 25px;
+  top: 10px;
+  width: 15px;
+  height: 18px;
+  background: url(../img/soo.PNG) no-repeat;
+}
+body .content .head .list {
+  padding: 3px 6px;
+  background: #2a525c;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+body .content .head .list li {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background: red;
+  border-radius: 50%;
+  margin-left: 2px;
+  cursor: pointer;
+}
+body .content .head .list li:first-child {
+  margin: 0;
+}
+body .content .head .nav {
+  background: #fff;
+}
+body .content .head .nav li {
+  float: left;
+  width: 25%;
+  text-align: center;
+  border-right: 1px solid #f2f2f2;
+  box-sizing: border-box;
+}
+body .content .head .nav li:last-child {
+  border: none;
+}
+body .content .head .nav li i {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background: url(../img/icon1.PNG) no-repeat;
+  margin: 0 auto;
+  margin-bottom: 3px;
+  margin-top: 10px;
+}
+body .content .head .nav li i:nth-child(2) {
+  background: url(../img/icon2.png) no-repeat;
+}
+body .content .head .nav li i:nth-child(2) {
+  background: url(../img/icon3.png) no-repeat;
+}
+body .content .head .nav li i:nth-child(2) {
+  background: url(../img/icon.png) no-repeat;
+}
+body .content .head .nav li span {
+  display: block;
+  margin-bottom: 10px;
+  font: 12px/1 '微软雅黑';
+  color: #333;
+}
+body .content .head .pic {
+  margin: 10px 0;
+}
+body .content .head .pic li {
+  float: left;
+  width: 50%;
+  border-right: 2px solid #ccc;
+  box-sizing: border-box;
+}
+body .content .head .pic li:last-child {
+  border: none;
+}
+body .content .head .pic li:last-child a:last-child {
+  border-top: 2px solid #ccc;
+  box-sizing: border-box;
+}
+body .content .head .pic li a {
+  display: block;
+}
+body .content .head .pic li a img {
+  width: 100%;
+}
+body .content .menu {
+  background: #fff;
+}
+body .content .menu div {
+  padding-top: 10px;
+}
+body .content .menu div h3 {
+  width: 100%;
+  padding-left: 10px;
+  box-sizing: border-box;
+  height: 21px;
+  border-left: 5px solid #f37e0b;
+  font: 14px/21px '微软雅黑';
+  margin-bottom: 10px;
+}
+body .content .menu div h3.title1 {
+  border-color: #4881c9;
+}
+body .content .menu div h3.title2 {
+  border-color: #48c242;
+}
+body .content .menu ul li {
+  float: left;
+  width: 25%;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  margin-top: -1px;
+  border-left: none;
+}
+body .content .menu ul li.item {
+  border-right-color: #fff;
+}
+body .content .menu ul li img {
+  margin-bottom: 10px;
+}
+body .content .menu ul li a {
+  font: 12px/1 '微软雅黑';
+  color: #333;
+  display: block;
+  text-align: center;
+  padding: 15px 0;
+}
+body .content .menu ul li a img {
+  width: 100%;
+}
+body .content .guild {
+  margin-top: 10px;
+}
+body .content .guild a {
+  float: left;
+  width: 50%;
+  border-right: 2px solid #f4f4f4;
+  box-sizing: border-box;
+}
+body .content .guild a img {
+  width: 100%;
+}
+body .content .footer a img {
+  width: 100%;
+}
+body .foot {
+  width: 100%;
+}
+body .foot a {
+  display: block;
+}
+body .foot a img {
+  width: 100%;
+}

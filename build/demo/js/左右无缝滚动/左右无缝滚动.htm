@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+		*{padding:0;margin:0;list-style: none;}
+		#box{width: 1280px;height:240px;margin:100px auto;overflow: hidden;position: relative;border: 1px solid #000;}
+		#ul1{height:240px; position: absolute;left: 0;top:0;}
+		#ul1 li{float:left;}
+		#ul1 li img{width:300px;height:220px;_margin-left: 10px;padding:10px;}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBox=document.getElementById('box');
+			var oL=document.getElementById('l_btn');
+			var oR=document.getElementById('r_btn');
+			var oUl=document.getElementById('ul1');
+			var aLi=oUl.children;
+
+			oUl.innerHTML+=oUl.innerHTML;
+
+			oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+
+			var left=0;
+			var timer=null;
+
+			/*oBox.onmouseover=function(){
+				clearInterval(timer);
+			};
+			oBox.onmouseout=function(){
+				clearInterval(timer);
+				timer=setInterval(next,300);
+			};*/
+
+			oL.onclick=function(){
+				clearInterval(timer);
+				prev();
+			};
+
+			oR.onclick=function(){
+				clearInterval(timer);
+				next();
+			};
+
+			function prev(){
+				clearInterval(timer);
+				timer=setInterval(function(){
+				left-=10;
+				if(left<-oUl.offsetWidth/2){
+					left=0;
+				}
+				oUl.style.left=left+'px';
+				},30);
+			};
+			
+			function next(){
+				clearInterval(timer);
+				timer=setInterval(function(){
+				left+=10;
+				if(left>0){
+					left=-oUl.offsetWidth/2;
+				}
+				oUl.style.left=left+'px';
+				},30);
+			};
+			next();
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="向左" id="l_btn">
+	<input type="button" value="向右" id="r_btn">
+
+	<div id="box">
+		<ul id="ul1">
+			<li><img src="img/0.jpg" alt="" /></li>
+			<li><img src="img/1.jpg" alt="" /></li>
+			<li><img src="img/2.jpg" alt="" /></li>
+			<li><img src="img/3.jpg" alt="" /></li>
+		</ul>
+	</div>
+</body>
+</html>

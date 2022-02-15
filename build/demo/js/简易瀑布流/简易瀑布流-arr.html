@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+*{padding:0;margin:0;}
+ul{width:310px;float:left;}
+ul li{list-style:none;width:310px;border:1px solid #000;}
+</style>
+<script>
+
+	//思路 ：固定宽  随机高
+	//	第一排随机放，第二排是找那一张图片高度最低，谁最低往里面放图片
+	function rnd(n,m){
+		return parseInt(Math.random()*(m-n))+n;
+	};
+
+	function createLi(){
+		var oLi=document.createElement('li');//动态创建li
+		//var arr=['m1.jpg','m2.jpg','m3.jpg','m4.jpg','m5.jpg','m6.jpg','m7.jpg','m8.jpg','m9.jpg','m10.jpg','m11.png','m12.png','m13.png','m14.png','m15.png','m16.png','m17.png','m18.png','m19.png','m20.png'];
+		//var oImg=document.createElement('img');
+		//oLi.innerHTML='<img src="img/'+arr[rnd(1,20)]+'" style="widht:100%" alt=""/>';
+		//oLi.appendChild(oImg);
+		oLi.style.height=rnd(300,400)+'px';
+		//oLi.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+		return oLi;
+	};
+
+	window.onresize=window.onscroll=window.onload=function(){
+		oUl=document.getElementsByTagName('ul');
+		
+		function createLi10(){
+			for(var i=0;i<10;i++){
+				var oLi=createLi();
+				var arr=['m1.jpg','m2.jpg','m3.jpg','m4.jpg','m5.jpg','m6.jpg','m7.jpg','m8.jpg','m9.jpg','m10.jpg','m11.png','m12.png','m13.png','m14.png','m15.png','m16.png','m17.png','m18.png','m19.png','m20.png'];
+				var oImg=document.createElement('img');
+				oLi.innerHTML='<img src="img/'+arr[rnd(1,20)]+'" style="width:100%" height:100% alt=""/>';
+				oLi.appendChild(oImg);
+
+				var arrUl=[];	
+				var aUl=document.getElementsByTagName('ul')
+				for(var j=0;j<aUl.length;j++){
+					arrUl.push(aUl[j]);//把ul放到数组里面
+				}
+				arrUl.sort(function(ul1,ul2){
+					return ul1.offsetHeight-ul2.offsetHeight;//通过比较获得最小高度
+				})
+
+				arrUl[0].appendChild(oLi);//获取最小高度后往里面末尾放图片	
+			}	
+		};
+		createLi10();
+		window.onscroll=function(){
+			var scrollT=document.documentElement.scrollTop||document.body.scrollTop;//获取滚动距离
+			var clientH=document.documentElement.clientHeight;//获取可视区的高度；
+			var scrollH=document.documentElement.scrollHeight;//获取实际页面高度
+
+			if((scrollH-300)<=(scrollT+clientH)){
+				createLi10();
+			}
+		};
+
+	};
+</script>
+</head>
+<body>
+<ul></ul>
+<ul></ul>
+<ul></ul>
+<ul></ul>
+</body>
+</html>

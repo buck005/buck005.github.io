@@ -1,0 +1,30 @@
+[0719/211233:ERROR:gpu_info_collector_win.cc(103)] Can't retrieve a valid WinSAT assessment.
+[0719/211233:ERROR:proxy_service_factory.cc(105)] Cannot use V8 Proxy resolver in single process mode.
+[0719/211256:ERROR:gpu_info_collector_win.cc(103)] Can't retrieve a valid WinSAT assessment.
+[0719/211302:ERROR:gpu_info_collector_win.cc(103)] Can't retrieve a valid WinSAT assessment.
+[0719/211302:ERROR:proxy_service_factory.cc(105)] Cannot use V8 Proxy resolver in single process mode.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211303:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0719/211303:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0719/211321:ERROR:ipc_channel_win.cc(405)] pipe error: 232
