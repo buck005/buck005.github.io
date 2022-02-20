@@ -674,10 +674,10 @@ window.onload = function () {
         var onoff = true;
         oMusic.onclick = function () {
             if (onoff) {
-                this.style.background = "url(img/musicon.gif)";
+                this.style.background = "url(//cdn.kingcode.work/buck005/buck005/master/build/img/musicon.gif)";
                 oAudio1.play();
             } else {
-                this.style.background = "url(img/musicoff.gif)";
+                this.style.background = "url(//cdn.kingcode.work/buck005/buck005/master/build/img/musicoff.gif)";
                 oAudio1.pause();
             }
             onoff = !onoff;
