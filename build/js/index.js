@@ -64,7 +64,7 @@ window.onload = function () {
 
         for (var i = 0; i < arr.length; i++) {
             var oImage = new Image();
-            oImage.src = "img/" + arr[i];
+            oImage.src = "//cdn.kingcode.work/buck005/buck005/master/build/img/" + arr[i];
             oImage.onload = function () {
                 imageiNow++;
                 oSpan.style.width = (imageiNow / arr.length) * 100 + "%";
