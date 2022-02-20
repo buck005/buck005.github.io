@@ -272,13 +272,13 @@ window.onload = function () {
         var oldIndex = 0;
         var iNowHome = 0;
         var data = [
-            { href: "demo/html/《灵魂回响》官方网站/index.html", src: "img/demo_img/111111.png", text: "灵魂回响" },
-            { href: "demo/html/京东/index.html", src: "img/demo_img/333333.png", text: "京东-移动端" },
-            { href: "demo/html/273二手车网/index.html", src: "img/demo_img/444444.png", text: "273二手车网" },
-            { href: "demo/html/美丽说-首页/index.html", src: "img/demo_img/555555.png", text: "美丽说-首页" },
-            { href: "demo/html/小米官网-新版/index.html", src: "img/demo_img/666666.png", text: "小米官网-新版" },
-            { href: "demo/html/聚划算/index.html", src: "img/demo_img/777777.png", text: "聚划算-移动端" },
-            { href: "demo/html/爱奇艺/index.html", src: "img/demo_img/222222.png", text: "爱奇艺" },
+            { href: "//cdn.kingcode.work/buck005/buck005/master/build/demo/html/《灵魂回响》官方网站/index.html", src: "//cdn.kingcode.work/buck005/buck005/master/build/img/demo_img/111111.png", text: "灵魂回响" },
+            { href: "//cdn.kingcode.work/buck005/buck005/master/build/demo/html/京东/index.html", src: "//cdn.kingcode.work/buck005/buck005/master/build/img/demo_img/333333.png", text: "京东-移动端" },
+            { href: "//cdn.kingcode.work/buck005/buck005/master/build/demo/html/273二手车网/index.html", src: "//cdn.kingcode.work/buck005/buck005/master/build/img/demo_img/444444.png", text: "273二手车网" },
+            { href: "//cdn.kingcode.work/buck005/buck005/master/build/demo/html/美丽说-首页/index.html", src: "//cdn.kingcode.work/buck005/buck005/master/build/img/demo_img/555555.png", text: "美丽说-首页" },
+            { href: "//cdn.kingcode.work/buck005/buck005/master/build/demo/html/小米官网-新版/index.html", src: "//cdn.kingcode.work/buck005/buck005/master/build/img/demo_img/666666.png", text: "小米官网-新版" },
+            { href: "//cdn.kingcode.work/buck005/buck005/master/build/demo/html/聚划算/index.html", src: "//cdn.kingcode.work/buck005/buck005/master/build/img/demo_img/777777.png", text: "聚划算-移动端" },
+            { href: "//cdn.kingcode.work/buck005/buck005/master/build/demo/html/爱奇艺/index.html", src: "//cdn.kingcode.work/buck005/buck005/master/build/img/demo_img/222222.png", text: "爱奇艺" },
         ];
         create();
         function create() {

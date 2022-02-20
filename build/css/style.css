@@ -142,7 +142,7 @@ a:active {
 #music {
     width: 14px;
     height: 14px;
-    background: url("../img/musicoff.gif") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/musicoff.gif") no-repeat;
     float: left;
     margin: 50px 0 0 5px;
     cursor: pointer;
@@ -176,7 +176,7 @@ a:active {
 #arrow {
     width: 21px;
     height: 11px;
-    background: url(../img/menuIndicator.png) no-repeat;
+    background: url(//cdn.kingcode.work/buck005/buck005/master/build/img/menuIndicator.png) no-repeat;
     position: absolute;
     left: 50%;
     bottom: -11px;
@@ -240,7 +240,7 @@ a:active {
 
 /*home start*/
 #home {
-    /* background: url("../img/bg1.jpg") no-repeat; */
+    /* background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/bg1.jpg") no-repeat; */
     background: #003f65;
 }
 
@@ -414,7 +414,7 @@ a:active {
 
 /*course start*/
 #course {
-    /* background: url("../img/bg3.jpg") no-repeat; */
+    /* background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/bg3.jpg") no-repeat; */
     background: #003f65;
 }
 
@@ -600,7 +600,7 @@ a:active {
 #course .plane1 {
     width: 359px;
     height: 283px;
-    background: url("../img/plane1.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/plane1.png") no-repeat;
     position: absolute;
     left: 700px;
     top: -120px;
@@ -610,7 +610,7 @@ a:active {
 #course .plane2 {
     width: 309px;
     height: 249px;
-    background: url("../img/plane2.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/plane2.png") no-repeat;
     position: absolute;
     left: 300px;
     top: 200px;
@@ -620,7 +620,7 @@ a:active {
 #course .plane3 {
     width: 230px;
     height: 182px;
-    background: url("../img/plane3.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/plane3.png") no-repeat;
     position: absolute;
     left: 800px;
     top: 400px;
@@ -631,7 +631,7 @@ a:active {
 
 /*works start*/
 #works {
-    /* background: url("../img/bg4.jpg") no-repeat; */
+    /* background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/bg4.jpg") no-repeat; */
     background: #003f65;
 }
 
@@ -745,7 +745,7 @@ a:active {
 #worksContent .worksImgMark div {
     width: 32px;
     height: 34px;
-    background: url("../img/zoomico.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/zoomico.png") no-repeat;
     margin: 10px auto;
     cursor: pointer;
     transition: .5s;
@@ -776,7 +776,7 @@ a:active {
 #worksContent .worksContent3 {
     width: 167px;
     height: 191px;
-    background: url("../img/robot.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/robot.png") no-repeat;
     position: absolute;
     left: 920px;
     top: 140px;
@@ -820,7 +820,7 @@ a:active {
 #works .pencel1 {
     width: 180px;
     height: 79px;
-    background: url("../img/pencel1.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/pencel1.png") no-repeat;
     position: absolute;
     left: 750px;
     top: 0px;
@@ -830,7 +830,7 @@ a:active {
 #works .pencel2 {
     width: 268px;
     height: 38px;
-    background: url("../img/pencel2.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/pencel2.png") no-repeat;
     position: absolute;
     left: 300px;
     top: 250px;
@@ -840,7 +840,7 @@ a:active {
 #works .pencel3 {
     width: 441px;
     height: 231px;
-    background: url("../img/pencel3.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/pencel3.png") no-repeat;
     position: absolute;
     left: 600px;
     top: 250px;
@@ -851,7 +851,7 @@ a:active {
 
 /*about start*/
 #about {
-    /* background: url("../img/bg5.jpg") no-repeat; */
+    /* background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/bg5.jpg") no-repeat; */
     background: #003f65;
 }
 
@@ -929,7 +929,7 @@ a:active {
 #about .blueLine {
     width: 357px;
     height: 998px;
-    background: url("../img/greenLine.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/greenLine.png") no-repeat;
     position: absolute;
     left: 50%;
     top: 0;
@@ -939,7 +939,7 @@ a:active {
 
 /*team start*/
 #author {
-    /* background: url("../img/bg2.jpg") no-repeat; */
+    /* background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/bg2.jpg") no-repeat; */
     background: #003f65;
     position: relative;
 }
@@ -967,7 +967,7 @@ a:active {
 #author .authorContent2 ul li {
     width: 118px;
     height: 448px;
-    background: url("../img/team.png") no-repeat;
+    background: url("//cdn.kingcode.work/buck005/buck005/master/build/img/team.png") no-repeat;
     float: left;
     cursor: pointer;
 }
