@@ -615,7 +615,7 @@ window.onload = function () {
                         // setStyle(f, "transform", "perspective(800px) rotateX(-10deg) rotateY(-10deg)");
                         f.classList.add('transformItem')
                     });
-                }, 500);
+                }, 1000);
             },
             outAn: function () {
                 var oPlane1 = getByClass(oCourseContent, "plane1")[0];
