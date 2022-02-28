@@ -21,6 +21,7 @@ window.onload = function () {
     var oHomeContent1 = getByClass(oHomeContent, "homeContent1")[0];
     var oHomeContent2 = getByClass(oHomeContent, "homeContent2")[0];
     var oCourseContent = $("courseContent");
+    var oCourse2 = $("course");
 
     var oMenu_box = $("menu_box");
     var aLiMenu = oMenu_box.getElementsByTagName("li");
@@ -594,14 +595,27 @@ window.onload = function () {
                 setStyle(oHomeContent2, "transform", "translate(0,100px)");
             },
         },
+        
         {
             inAn: function () {
                 var oPlane1 = getByClass(oCourseContent, "plane1")[0];
                 var oPlane2 = getByClass(oCourseContent, "plane2")[0];
                 var oPlane3 = getByClass(oCourseContent, "plane3")[0];
+                var courseLogoList = getByClass(oCourse2, "courseLogo");
+                console.log("courseLogoList=>", courseLogoList);
                 setStyle(oPlane1, "transform", "translate(0,0)");
                 setStyle(oPlane2, "transform", "translate(0,0)");
                 setStyle(oPlane3, "transform", "translate(0,0)");
+
+                [...courseLogoList].forEach(f => {
+                    f.classList.remove('transformItem')
+                })
+                setTimeout(() => {
+                    [...courseLogoList].forEach((f) => {
+                        // setStyle(f, "transform", "perspective(800px) rotateX(-10deg) rotateY(-10deg)");
+                        f.classList.add('transformItem')
+                    });
+                }, 500);
             },
             outAn: function () {
                 var oPlane1 = getByClass(oCourseContent, "plane1")[0];

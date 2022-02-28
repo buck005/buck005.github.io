@@ -507,7 +507,10 @@ a:active {
     opacity: 1;
     z-index: 1;
 }
-
+.transformItem {
+    -webkit-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
+    -moz-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
+}
 #course .courseContent3 .courseLogo {
     transform-style: preserve-3d;
     position: relative;
@@ -516,8 +519,8 @@ a:active {
     width: 120px;
     height: 120px;
     float: left;
-    -webkit-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
-    -moz-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
+    /* -webkit-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg);
+    -moz-transform: perspective(800px) rotateX(-10deg) rotateY(-10deg); */
     margin-top: 25px;
     margin-right: 40px;
     transition: 1s;
